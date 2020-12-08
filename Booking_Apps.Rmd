@@ -91,9 +91,9 @@ bookapp <- data.frame(
 )
 
 # Only take Traveloka, Tiket.com, Pegipegi, Tripadvisor, Booking.com, Agoda data
-book_app <- head(bookapp,7)
-book_app <- book_app %>% 
-  filter(Application_Name != "Travel Buddy: Find a Local & Plan Your Trip")
+travel <- c("Traveloka: Book Hotel, Flight Ticket & Activities","tiket.com - Hotels, Flights, To Dos",
+            "Booking.com: Hotels, Apartments & Accommodation", "Tripadvisor Hotel, Flight & Restaurant Bookings", "Pegipegi - Buy Hotel, Flight, Train & Bus Ticket", "Agoda")
+book_app <- bookapp[bookapp$Application_Name %in% travel,]
 ```
 
 Scrape the application's logo
@@ -132,12 +132,6 @@ Overview of the Data
 book_app
 ```
 
-Save the dataframe to Booking_Apps.csv
-
-```{r}
-write.csv(book_app,"Data/Booking_Apps.csv")
-```
-
 
 # __Booking App's Profile Data Scraping__
 
@@ -164,3 +158,108 @@ traveloka_data <- gsub("\n","",traveloka_data)
 profile_data <- c(profile_data, traveloka_data)
 ```
 
+Scrape Tiket.com's profile
+
+```{r}
+# Reading HTML Code from the website
+tiket_web <- read_html("https://centreforaviation.com/data/profiles/suppliers/pt-global-tiket-network")
+
+# Specifying class of the profile
+tiket_html <- html_node(tiket_web,'.about_bio_WkT') %>%  html_children()
+
+# Converting the application's names data to text
+tiket_data <- html_text(tiket_html[2])
+
+# Add traveloka profile to list
+profile_data <- c(profile_data, tiket_data)
+```
+
+Scrape Booking.com's profile
+
+```{r}
+# Reading HTML Code from the website
+booking_web <- read_html("https://www.booking.com/content/about.en-gb.html?label=gen173nr-1DCBQoggJCBWFib3V0SAlYBGhoiAEBmAEJuAEIyAEM2AED6AEBiAIBqAIDuALmm7z-BcACAdICJDRkMzA0MjAyLWQyZTctNGFkZS1hYjczLTI5ZDk2MmY0Nzg5ZdgCBOACAQ;sid=66417274f3216deaf8cdde1d344ff462;keep_landing=1&")
+
+# Specifying class of the profile
+booking_html <- html_node(booking_web,'.static_highlighted') %>%  html_children()
+
+# Converting the application's names data to text
+booking_data <- html_text(booking_html[3])
+booking_data <- gsub("\n","", booking_data)
+
+# Add traveloka profile to list
+profile_data <- c(profile_data, booking_data)
+```
+
+Scrape Tripadvisor's profile
+
+```{r}
+# Reading HTML Code from the website
+trip_web <- read_html("https://tripadvisor.mediaroom.com/IN-about-us")
+
+# Specifying class of the profile
+trip_html <- html_node(trip_web,'.content') %>% html_children() %>% html_children()
+trip_html <- trip_html[2] %>% html_children()
+
+# Converting the application's names data to text
+trip_data <- html_text(trip_html[1])
+
+# Add traveloka profile to list
+profile_data <- c(profile_data, trip_data)
+```
+
+Scrape Pegipegi's profile
+
+```{r}
+# Reading HTML Code from the website
+pegi_web <- read_html("https://www.pegipegi.com/team/")
+
+# Specifying class of the profile
+pegi_html <- html_node(pegi_web,'.content01') %>% html_children() 
+
+# Converting the application's names data to text
+pegi_data <- html_text(pegi_html[5])
+
+# Add traveloka profile to list
+profile_data <- c(profile_data, pegi_data)
+```
+
+Scrape Agoda's profile
+
+```{r}
+# Reading HTML Code from the website
+agoda_web <- read_html("https://my.wobbjobs.com/users/companies/agoda-com")
+
+# Specifying class of the profile
+agoda_html <- html_node(agoda_web,'.section') %>%  html_children() %>% html_children()
+
+# Converting the application's names data to text
+agoda_data <- html_text(agoda_html[3])
+agoda_data <- sub('.*About Agoda ', '', agoda_data)
+
+# Add traveloka profile to list
+profile_data <- c(profile_data, agoda_data) 
+```
+
+# __Combine All Scraping Results__
+
+Add profile data to the dataframe
+
+```{r}
+profile_data <- profile_data %>% unlist()
+
+book_app <- book_app %>% 
+  mutate("Profile" = profile_data)
+```
+
+Overview of the data
+
+```{r, echo=FALSE}
+book_app
+```
+
+Save the dataframe to Booking_Apps.csv
+
+```{r}
+write.csv(book_app,"Data/Booking_Apps.csv")
+```
