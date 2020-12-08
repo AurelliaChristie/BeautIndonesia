@@ -2,10 +2,31 @@
 title: "city recommendation"
 author: "Gerald Bryan"
 date: "07/12/2020"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: 
+      collapsed: false
+      smooth_scroll: true
+    number_sections: true
+    theme: united
+    highlight: espresso
+    df_print: paged
+    code_folding: show
 ---
 
-We gather the search trend from 30 cities in Indonesia using 'Google Search Trend' and we get top ten places with most search from January 2016 up to December 2020.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  class.output = ".scroll-500",
+  comment = "#>"
+)
+options(scipen = 9999)
+options(warn = -1) # remove warning messages
+```
 
 ```{r}
 library(dplyr)
@@ -15,26 +36,68 @@ library(tidyverse)
 library(gganimate)
 library(rvest)
 library(bubbles)
+library(stringr)
+library(htmlwidgets)
+library(extrafont)
 ```
 
+We gather the search trend from 30 cities in Indonesia based on searching for **Travel Destination** using 'Google Search Trend' and we get top ten places with most search from January 2016 up to December 2020. We also do some profile scraping of the top 5 cities from **WIKIPEDIA** site to give a brief information about the cities itself.
+
 # Read Data
+
 ```{r}
 city <- read.csv("Data/Place rating score.csv")
 city
 ```
+
+# Data Processing
+
 ```{r}
 city <- city %>%
   arrange(desc(Searching.Rating))
 ```
 
+# Bubble Plot
 ```{r}
-a <- city$Searching.Rating
+bubbles <- function(value, label, key = NULL, tooltip = "", color = "#EEEEEE",
+  textColor = "#333333", width = NULL, height = NULL, fontsize=NULL, fontfamiy=NULL) {
+ 
+  # forward options using x
+  x = data.frame(
+    value = value,
+    label = label,
+    tooltip = tooltip,
+    color = color,
+    textColor = textColor,
+    fontsize = fontsize,
+    fontfamiy=fontfamiy
+  )
+  if (!is.null(key)) {
+    x <- cbind(x, data.frame(key = key))
+  }
+ 
+  # create widget 
+  htmlwidgets::createWidget(
+    name = 'bubbles',
+    x,
+    width = width,
+    height = height,
+    package = 'bubbles',
+    sizingPolicy = sizingPolicy(
+      defaultWidth = 600,
+      defaultHeight = 600
+    ),
+  )
+}
+
 colfunc <- colorRampPalette(c("#CCFFFF","#FFFF99", "#FFCCE5"))
 bubbles(value = city$Searching.Rating,label = city$Place,tooltip="a",color = colfunc(10),
-        height = 400)
+        fontsize=5,fontfamiy = "Arial Rounded MT Bold")
 ```
 
-# Bali
+# Scrapping Profile (Behind the Scene)
+
+## Bali
 
 ```{r}
 link <- paste0("https://en.wikipedia.org/wiki/Bali")
@@ -47,7 +110,7 @@ bali <- pages %>%
 bali[2:3]
 ```
 
-#Yogyakarta
+## Yogyakarta
 
 ```{r}
 link <- paste0("https://en.wikipedia.org/wiki/Yogyakarta")
@@ -60,7 +123,7 @@ Yogyakarta <- pages %>%
 Yogyakarta[2]
 ```
 
-# Malang
+## Malang
 
 ```{r}
 link <- paste0("https://en.wikipedia.org/wiki/Malang")
@@ -69,10 +132,10 @@ malang <- pages %>%
       html_nodes(".mw-body-content p") %>%
       html_text()
 
-bandung[2:3]
+malang[2:3]
 ```
 
-# Makassar
+## Makassar
 
 ```{r}
 link <- paste0("https://en.wikipedia.org/wiki/Makassar")
@@ -85,7 +148,7 @@ Makassar <- pages %>%
 Makassar[2:3]
 ```
 
-# Bandung
+## Bandung
 
 ```{r}
 link <- paste0("https://en.wikipedia.org/wiki/Bandung")
@@ -95,6 +158,75 @@ bandung <- pages %>%
       html_nodes(".mw-body-content p") %>%
       html_text()
 
-bandung[2]
+bandung <- bandung[2]
+
+bandung
+
+```
+
+# Scrapping advisor tips
+
+## Bali
+```{r}
+link <- paste0("https://www.tripsavvy.com/etiquette-tips-for-travelers-in-bali-1629371#:~:text=Bali%20locals%20never%20show%20anger%20or%20passion%20openly%2C,be%20touched%20on%20their%20heads%2C%20so%20no%20noogies.")
+pages <- read_html(link)
+
+bali_tips <- pages %>% 
+      html_nodes("strong") %>%
+      html_text()
+bali_tips <- bali_tips[c(1,4:10)]
+```
+
+## Yogyakarta
+
+```{r}
+link <- paste0("https://factsofindonesia.com/norms-in-yogyakarta.")
+pages <- read_html(link)
+
+yogya_tips <- pages %>% 
+      html_nodes("strong") %>%
+      html_text()
+yogya_tips <- yogya_tips[c(2:5,6:7,8,9)]
+```
+
+## Malang Tips
+
+```{r}
+link <- paste0("https://www.travelinsurance.com.au/articles/etiquette-essentials-when-visiting-indonesia/")
+pages <- read_html(link)
+
+mlg_tips <- pages %>% 
+      html_nodes("h4") %>%
+      html_text()
+mlg_tips <- mlg_tips[c(1:5,14:16)]
+```
+
+## Makassar Tips
+
+```{r}
+link <- paste0("https://theculturetrip.com/asia/indonesia/articles/11-things-you-should-never-ever-do-in-indonesia/")
+pages <- read_html(link)
+
+mksr_tips <- pages %>% 
+      html_nodes(".fmfXHY") %>%
+      html_text()
+mksr_tips <- mksr_tips[c(1:4,6:7,9:10)]
+```
+
+## Bandung Tips
+
+```{r}
+link <- paste0("https://factsofindonesia.com/things-to-avoid-in-bandung")
+pages <- read_html(link)
+
+bdg_tips <- pages %>% 
+      html_nodes("strong") %>%
+      html_text()
+bdg_tips <- bdg_tips[c(1:2,4,6:7,10,11,13)]
+bdg_tips <- str_replace_all(bdg_tips,"[^a-zA-Z\\s]", "")
+```
+
+```{r}
+travel_tips <- data.frame(bali_tips,yogya_tips,mksr_tips,mlg_tips,bdg_tips)
 ```
 
