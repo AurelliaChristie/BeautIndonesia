@@ -1,0 +1,100 @@
+---
+title: "city recommendation"
+author: "Gerald Bryan"
+date: "07/12/2020"
+output: html_document
+---
+
+We gather the search trend from 30 cities in Indonesia using 'Google Search Trend' and we get top ten places with most search from January 2016 up to December 2020.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+library(gganimate)
+library(rvest)
+library(bubbles)
+```
+
+# Read Data
+```{r}
+city <- read.csv("Data/Place rating score.csv")
+city
+```
+```{r}
+city <- city %>%
+  arrange(desc(Searching.Rating))
+```
+
+```{r}
+a <- city$Searching.Rating
+colfunc <- colorRampPalette(c("#CCFFFF","#FFFF99", "#FFCCE5"))
+bubbles(value = city$Searching.Rating,label = city$Place,tooltip="a",color = colfunc(10),
+        height = 400)
+```
+
+# Bali
+
+```{r}
+link <- paste0("https://en.wikipedia.org/wiki/Bali")
+pages <- read_html(link)
+
+bali <- pages %>% 
+      html_nodes(".mw-body-content p") %>%
+      html_text()
+
+bali[2:3]
+```
+
+#Yogyakarta
+
+```{r}
+link <- paste0("https://en.wikipedia.org/wiki/Yogyakarta")
+pages <- read_html(link)
+
+Yogyakarta <- pages %>% 
+      html_nodes(".mw-body-content p") %>%
+      html_text()
+
+Yogyakarta[2]
+```
+
+# Malang
+
+```{r}
+link <- paste0("https://en.wikipedia.org/wiki/Malang")
+pages <- read_html(link)
+malang <- pages %>% 
+      html_nodes(".mw-body-content p") %>%
+      html_text()
+
+bandung[2:3]
+```
+
+# Makassar
+
+```{r}
+link <- paste0("https://en.wikipedia.org/wiki/Makassar")
+pages <- read_html(link)
+
+Makassar <- pages %>% 
+      html_nodes(".mw-body-content p") %>%
+      html_text()
+
+Makassar[2:3]
+```
+
+# Bandung
+
+```{r}
+link <- paste0("https://en.wikipedia.org/wiki/Bandung")
+pages <- read_html(link)
+
+bandung <- pages %>% 
+      html_nodes(".mw-body-content p") %>%
+      html_text()
+
+bandung[2]
+```
+
