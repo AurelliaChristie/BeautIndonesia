@@ -224,9 +224,133 @@ bdg_tips <- pages %>%
       html_text()
 bdg_tips <- bdg_tips[c(1:2,4,6:7,10,11,13)]
 bdg_tips <- str_replace_all(bdg_tips,"[^a-zA-Z\\s]", "")
+bdg_tips <- trimws(bdg_tips, "l")
 ```
 
 ```{r}
 travel_tips <- data.frame(bali_tips,yogya_tips,mksr_tips,mlg_tips,bdg_tips)
+```
+
+# Destination places
+
+## Bali
+
+```{r}
+#Destination Place
+link <- paste0("https://www.thebrokebackpacker.com/best-places-to-visit-in-bali/")
+pages <- read_html(link)
+
+bali_place <- pages %>% 
+      html_nodes("h3") %>%
+      html_text()
+
+bali_place <- bali_place[c(7,8,12,19,20)]
+
+bali_place <- str_replace_all(bali_place,"[^a-zA-Z\\s]", "")
+
+bali_place <- trimws(bali_place,"l")
+
+# Description about place
+
+bali_place_desc <- pages %>% 
+      html_nodes("p") %>%
+      html_text()
+bali_place_desc <- bali_place_desc[c(18,21,33,56,61)]
+
+del <- "Why it’s awesome: "
+
+bali_place_desc <- gsub(paste0(del,collapse = "|"),"", bali_place_desc)
+
+# review
+
+
+
+```
+
+## Yogyakarta
+
+```{r}
+link <- paste0("https://twomonkeystravelgroup.com/7-awesome-things-to-do-in-yogyakarta-indonesia/")
+pages <- read_html(link)
+
+yogya_place <- pages %>% 
+      html_nodes("strong") %>%
+      html_text()
+yogya_place <- yogya_place[c(3,5,7,8,9)]
+
+yogya_place <- str_replace_all(yogya_place,"[^a-zA-Z\\s]", "")
+
+yogya_place <- trimws(yogya_place,"l")
+
+# Description
+
+yogya_place_desc <- pages %>% 
+      html_nodes("p") %>%
+      html_text()
+yogya_place_desc <- yogya_place_desc[c(6,20,31,36,39)]
+
+# Review
+
+```
+
+# Makassar 
+
+```{r}
+link <- paste0("http://www.travelingwhere.com/2015/05/10-best-tourist-destinations-in-makassar.html")
+pages <- read_html(link)
+
+mksr_place <- pages %>% 
+      html_nodes("i") %>%
+      html_text()
+mksr_place <- mksr_place[c(1:5)]
+
+mksr_place <- trimws(mksr_place,"l")
+
+# Description
+mksr_place_desc <- c("Losari beach is a must-visit place during your stay in Makassar. This beach is very famous among local people and visitors, where you can find several uniqueness of the place. You won’t find sandy beaches with waves like in other beaches, instead you will see an expanse of blue sea with concrete barrier around. The main attraction of this place is that you can enjoy various local culinary dishes while fishing, chatting, or simply gathering with your family.","Rotterdam fort, a historical heritage from Gowa-Tallo kingdom that was built in 1545. This place is also a home of a museum with more than 4000 collections, including ethnography collection. Its ancient building is now popular for photography site.","Taka Bonerate marine park is located in Selayar islands. This particular tourism site is a favorite place for water sport enthusiasts. Enjoy the diversity of hundreds variety of fishes and turtles while your snorkel and dive into the water.","Located in secluded place, Tanjung Bira makes one of the best tourist destinations to relax and run from those businesses in the city. This beach is famous for its pure white sand and clear blue seawater. Visitors can enjoy various activity in the beach including sunbathing, snorkeling, diving, swimming, or simply enjoying the beautiful beach panorama and sunset.","Located 45 km from the city center of Makassar, Bantimurung national park has an area of 43.759 acres and butterfly as its icon. This national park covers limestone hills, waterfalls and caves. However, the main attraction of the place is visitors can see hundreds collections of butterfly, enjoy waterfall, flying fox, and swimming in the pool.")
+
+# Review
+
+```
+
+## Malang
+
+```{r}
+link <- paste0("http://www.travelingwhere.com/2015/05/10-popular-tourist-destinations-in.html")
+pages <- read_html(link)
+
+mlg_place <- pages %>% 
+      html_nodes("i") %>%
+      html_text()
+mlg_place <- mlg_place[c(1,3,5,6,8)]
+
+mlg_place <- trimws(mlg_place,"l")
+
+# Description
+mlg_place_desc <- c("In this place, you can see a zoo with concept that has never existed before. The visitors can see various collections of animals that are placed in glass cage surround with cliffy rock. This interesting concept is capable to attract children and parents can teach them about the animal in a fun way.","Looking at its contour and shape, Balekambang Beach’s contour has similar shape with Tanah Lot beach in Bali, particularly with the existence of temple above the rock in the middle of the sea. Located in southern part of Malang city, Balekambang beach is the favorite place of local people to relax","Located in Duwet Krajan village, this place allows you to enjoy the gorgeous scenery of seven waterfalls at once. According to legend, the waterfalls have magical power and sacred by the local people.","Jawa Timur Park or more often known as Jatim Park is a well-known theme park in Malang that offers various rides, and entertainments. There are pools, science stadium, 3D theatre, Go kart area, and many more. Located in city center of Malang, Jatim Park makes a great place for children to play and learn.","Angkut is the word of transportation in Javanese. Angkut museum is the right tourist destination where you can learn about the history of transportation and its development around the world. There is huge collection of transportation types, divided in 10 different country zones.")
+```
+
+## Bandung
+
+```{r}
+link <- paste0("https://captureindonesia.com/java/west-java/bandung-interesting-places/")
+pages <- read_html(link)
+
+bdg_place <- pages %>% 
+      html_nodes("h3") %>%
+      html_text()
+bdg_place <- bdg_place[c(2,3,5,7,12)]
+
+bdg_place <- str_replace_all(bdg_place,"[^a-zA-Z\\s]", "")
+
+bdg_place <- trimws(bdg_place,"l")
+
+#Description
+bdg_place_desc <- pages %>% 
+      html_nodes("p") %>%
+      html_text()
+bdg_place_desc <- bdg_place_desc[c(9,14,22,31,50)]
+
+#review
 ```
 
