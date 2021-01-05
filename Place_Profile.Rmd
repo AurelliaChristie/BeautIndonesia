@@ -46,7 +46,7 @@ We gather the search trend from 30 cities in Indonesia based on searching for **
 # Read Data
 
 ```{r}
-city <- read.csv("Data/Place rating score.csv")
+city <- read.csv("Data/Place_Rating_Score.csv")
 city
 ```
 
@@ -226,7 +226,7 @@ bdg_tips <- trimws(bdg_tips, "l")
 
 ```{r}
 travel_tips <- data.frame(bali_tips,yogya_tips,mksr_tips,mlg_tips,bdg_tips)
-write.csv(travel_tips, "travel_tips.csv")
+write.csv(travel_tips, "Data/Travel_Tips.csv")
 ```
 
 # Destination places
@@ -914,7 +914,7 @@ ciater_review_ful <- data.frame(ciater_review_ful[1:500,1])
 #aling,dusun bambu,sumber pitu,balekambang, jatimpark, bantimurung, tanjung bira, bonerate, batik,rott,losari,museumangkut
 review <- cbind(besakih_review_ful,monkeyforest_review_ful,kuta_review_ful,mountbatur_review_ful,borobudur_review_ful,prambanan_review_ful,castle_review_ful,malioboro_review_ful,secretzoo_review_ful,whitecharter_review_ful,tangkubanperahu_review_ful,saungangklung_review_ful,ciater_review_ful)
 
-write.csv(review,"review.csv") #dont run again, the complete csv already in github :)
+write.csv(review,"Data/Review.csv") #dont run again, the complete csv already in github :)
 
 # add to review in csv
 write.csv(aling_review_ful,"aling.csv")
