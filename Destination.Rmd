@@ -1,5 +1,5 @@
 ---
-title: "city recommendation"
+title: "Destination Data Scraping"
 author: "Gerald Bryan"
 date: "07/12/2020"
 output: 
@@ -172,6 +172,9 @@ bali_tips <- pages %>%
       html_nodes("strong") %>%
       html_text()
 bali_tips <- bali_tips[c(1,4:10)]
+bali_tips <- trimws(bali_tips, which = c("right"))
+bali_tips <- substr(bali_tips, 1, nchar(bali_tips)-1)
+bali_tips[7] <- substr(bali_tips, 1, nchar(bali_tips[7])-1)
 ```
 
 ## Yogyakarta
@@ -201,13 +204,16 @@ mlg_tips <- mlg_tips[c(1:5,14:16)]
 ## Makassar Tips
 
 ```{r}
-link <- paste0("https://theculturetrip.com/asia/indonesia/articles/11-things-you-should-never-ever-do-in-indonesia/")
+link <- paste0("https://www.lifeofbrit.com/20-travel-tips-for-indonesia/")
 pages <- read_html(link)
 
 mksr_tips <- pages %>% 
-      html_nodes(".fmfXHY") %>%
+      html_nodes("b") %>%
       html_text()
-mksr_tips <- mksr_tips[c(1:4,6:7,9:10)]
+mksr_tips <- mksr_tips[c(1,2,9,12,14,15,20,22)]
+mksr_tips <- trimws(mksr_tips, which = c("right"))
+mksr_tips <- gsub("[[:digit:]]", "", mksr_tips)
+mksr_tips <- substr(mksr_tips, 3, nchar(mksr_tips)-1)
 ```
 
 ## Bandung Tips
@@ -222,11 +228,18 @@ bdg_tips <- pages %>%
 bdg_tips <- bdg_tips[c(1:2,4,6:7,10,11,13)]
 bdg_tips <- str_replace_all(bdg_tips,"[^a-zA-Z\\s]", "")
 bdg_tips <- trimws(bdg_tips, "l")
+bdg_tips <- str_to_sentence(bdg_tips)
 ```
 
 ```{r}
 travel_tips <- data.frame(bali_tips,yogya_tips,mksr_tips,mlg_tips,bdg_tips)
-write.csv(travel_tips, "Data/Travel_Tips.csv")
+travel_tips <- travel_tips %>% 
+  rename("Bali" = "bali_tips") %>% 
+  rename("Yogyakarta" = "yogya_tips") %>% 
+  rename("Makassar" = "mksr_tips") %>% 
+  rename("Malang" = "mlg_tips") %>% 
+  rename("Bandung" = "bdg_tips")
+write.csv(travel_tips, "Data/Travel_Tips.csv", row.names = FALSE)
 ```
 
 # Destination places
@@ -933,3 +946,59 @@ write.csv(bira_review_ful,"bira.csv")
 
 ```
 
+```{r}
+rev <- read.csv("Data/Review.csv")
+rev <- rev %>% select(-X)
+Bali_Review <- rev[,1:5]
+Bali_Review <- Bali_Review %>% 
+  rename("Besakih" = "besakih_review") %>% 
+  rename("Monkey_Forest" = "monkeyforest_review") %>%
+  rename("Kuta" = "kuta_review") %>% 
+  rename("Mount_Batur" = "mountbatur_review") %>% 
+  rename("Aling" = "aling_review")
+write.csv(Bali_Review, "Data/Bali_Review.csv", row.names = FALSE)
+```
+
+```{r}
+Yogyakarta_Review <- rev[,6:10]
+Yogyakarta_Review <- Yogyakarta_Review %>% 
+  rename("Borobudur" = "borobudur_review") %>% 
+  rename("Prambanan" = "prambanan_review") %>% 
+  rename("Castle" = "castle_review") %>% 
+  rename("Batik" = "batik_review") %>% 
+  rename("Malioboro" = "malioboro_review")
+write.csv(Yogyakarta_Review, "Data/Yogyakarta_Review.csv", row.names = FALSE)
+```
+
+```{r}
+Makassar_Review <- rev[,11:15]
+Makassar_Review <- Makassar_Review %>% 
+  rename("Fort_Rotterdam" = "rott_review") %>% 
+  rename("Losari" = "losari_review") %>% 
+  rename("Bonerate" = "bonerate_review") %>% 
+  rename("Bantimurung" = "bantimurung_review") %>% 
+  rename("Bira" = "bira_review")
+write.csv(Makassar_Review, "Data/Makassar_Review.csv", row.names = FALSE)
+```
+
+```{r}
+Malang_Review <- rev[,16:20]
+Malang_Review <- Malang_Review %>% 
+  rename("Secret_Zoo" = "secretzoo_review") %>% 
+  rename("Jatim_Park" = "jatimpark_review") %>% 
+  rename("Sumber_Pitu" = "sumberpitu_review") %>% 
+  rename("Balekambang" = "balekambang_review") %>% 
+  rename("Museum_Angkut" = "museumangkut_review")
+write.csv(Malang_Review, "Data/Malang_Review.csv", row.names = FALSE)
+```
+
+```{r}
+Bandung_Review <- rev[,21:25]
+Bandung_Review <- Bandung_Review %>% 
+  rename("White_Charter" = "whitecharter_review") %>% 
+  rename("Tangkuban_Perahu" = "tangkubanperahu_review") %>% 
+  rename("Dusun_Bambu" = "dusunbambu_review") %>% 
+  rename("Saung_Angklung" = "saungangklung_review") %>% 
+  rename("Ciater" = "ciater_review_ful")
+write.csv(Bandung_Review, "Data/Bandung_Review.csv", row.names = FALSE)
+```
