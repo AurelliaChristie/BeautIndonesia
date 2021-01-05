@@ -272,7 +272,16 @@ del <- "Why it’s awesome: "
 
 bali_place_desc <- gsub(paste0(del,collapse = "|"),"", bali_place_desc)
 
-bali_desc <- data.frame(bali_place,bali_place_desc)
+Long <- c(115.450935,115.258385,115.182,115.347694,115.103600)
+
+Lat <- c(-8.374368, -8.518823,-8.72052,-8.273214,-8.165020)
+
+Star <- c(3.5,4,3.5,4.5,4.5)
+
+Bali_destination <- data.frame(bali_place,bali_place_desc,Star,Long,Lat)
+
+write.csv(Bali_destination,row.names = FALSE,"Bali_destination.csv")
+
 ```
 
 ## Yogyakarta
@@ -290,7 +299,15 @@ yogya_place_desc <- pages %>%
       html_text()
 yogya_place_desc <- yogya_place_desc[c(6,20,31,36,39)]
 
-yogya_desc <- data.frame(yogya_place,yogya_place_desc)
+Long <- c(110.204,110.49167,110.35895,110.369180,110.36544)
+  
+Lat <- c(-7.608, -7.75222,-7.810151,-7.788980,-7.79309)
+  
+Star <- c(4.5,4.5,3.5,4.5,4)
+  
+Yogya_destination <- data.frame(yogya_place,yogya_place_desc,Star,Long,Lat)
+
+write.csv(Yogya_destination, row.names = FALSE, "Yogya_destination.csv")
 ```
 
 # Makassar 
@@ -309,7 +326,15 @@ mksr_place <- trimws(mksr_place,"l")
 # Description
 mksr_place_desc <- c("Losari beach is a must-visit place during your stay in Makassar. This beach is very famous among local people and visitors, where you can find several uniqueness of the place. You won’t find sandy beaches with waves like in other beaches, instead you will see an expanse of blue sea with concrete barrier around. The main attraction of this place is that you can enjoy various local culinary dishes while fishing, chatting, or simply gathering with your family.","Rotterdam fort, a historical heritage from Gowa-Tallo kingdom that was built in 1545. This place is also a home of a museum with more than 4000 collections, including ethnography collection. Its ancient building is now popular for photography site.","Taka Bonerate marine park is located in Selayar islands. This particular tourism site is a favorite place for water sport enthusiasts. Enjoy the diversity of hundreds variety of fishes and turtles while your snorkel and dive into the water.","Located in secluded place, Tanjung Bira makes one of the best tourist destinations to relax and run from those businesses in the city. This beach is famous for its pure white sand and clear blue seawater. Visitors can enjoy various activity in the beach including sunbathing, snorkeling, diving, swimming, or simply enjoying the beautiful beach panorama and sunset.","Located 45 km from the city center of Makassar, Bantimurung national park has an area of 43.759 acres and butterfly as its icon. This national park covers limestone hills, waterfalls and caves. However, the main attraction of the place is visitors can see hundreds collections of butterfly, enjoy waterfall, flying fox, and swimming in the pool.")
 
-mksr_desc <- data.frame(mksr_place,mksr_place_desc)
+Long <- c(119.408070,119.4046799,121.15,120.4584,119.6815737)
+
+Lat <- c(-5.143590,-5.134066199999999,-6.68333,-5.6147,-5.0162561)
+
+Star <- c(3.5,3.5,4.5,4,3.5)
+
+Makassar_destination <- data.frame(mksr_place,mksr_place_desc,Star,Long,Lat)
+
+write.csv(Makassar_destination, row.names = FALSE,"Makassar_destination.csv")
 ```
 
 ## Malang
@@ -328,7 +353,15 @@ mlg_place <- trimws(mlg_place,"l")
 # Description
 mlg_place_desc <- c("In this place, you can see a zoo with concept that has never existed before. The visitors can see various collections of animals that are placed in glass cage surround with cliffy rock. This interesting concept is capable to attract children and parents can teach them about the animal in a fun way.","Looking at its contour and shape, Balekambang Beach’s contour has similar shape with Tanah Lot beach in Bali, particularly with the existence of temple above the rock in the middle of the sea. Located in southern part of Malang city, Balekambang beach is the favorite place of local people to relax","Located in Duwet Krajan village, this place allows you to enjoy the gorgeous scenery of seven waterfalls at once. According to legend, the waterfalls have magical power and sacred by the local people.","Jawa Timur Park or more often known as Jatim Park is a well-known theme park in Malang that offers various rides, and entertainments. There are pools, science stadium, 3D theatre, Go kart area, and many more. Located in city center of Malang, Jatim Park makes a great place for children to play and learn.","Museum Angkut is the word of transportation in Javanese. Angkut museum is the right tourist destination where you can learn about the history of transportation and its development around the world. There is huge collection of transportation types, divided in 10 different country zones.")
 
-mlg_desc <- data.frame(mlg_place,mlg_place_desc)
+Long <- c(112.5296176, 112.5391259,112.5248818,112.8217266,112.5197779)
+
+Lat <- c(-7.888957500000001,-8.4034458,-8.0135832,-7.8845017,-7.8786133)
+
+Star <- c(4.5,4,4.5,4,4.5)
+
+Malang_destination <- data.frame(mlg_place,mlg_place_desc,Star,Long,Lat)
+
+write.csv(Malang_destination, row.names = FALSE,"Malang_destination.csv")
 ```
 
 ## Bandung
@@ -352,7 +385,15 @@ bdg_place_desc <- pages %>%
       html_text()
 bdg_place_desc <- bdg_place_desc[c(9,14,22,31,50)]
 
-bdg_desc <- data.frame(bdg_place,bdg_place_desc)
+Long <- c(107.4021256,107.6097807,107.5788285,107.654965,107.658639)
+
+Lat <- c(-7.166203899999999,-6.7596377,-6.7894762,-6.898032,-6.73775)
+
+Star <- c(4,3.5,4,4.5,3.5)
+
+Bandung_destination <- data.frame(bdg_place,bdg_place_desc,Star,Long,Lat)
+
+write.csv(Bandung_destination, row.names = FALSE,"Bandung_destination.csv")
 ```
 
 #Place Review
@@ -361,7 +402,6 @@ bdg_desc <- data.frame(bdg_place,bdg_place_desc)
 
 ```{r}
 #Besakih Temple
-#3.5 star (trip advisor)
 besakih_review_ful <- data.frame()
 for (i in seq(5,500,5)) {
 link <- paste0("https://www.tripadvisor.com/Attraction_Review-g608484-d506291-Reviews-or",i,"-Besakih_Temple-Karangasem_Bali.html#REVIEWS")
@@ -373,14 +413,10 @@ besakih_review <- pages %>%
 
 besakih_review_ful <- rbind(besakih_review_ful,data.frame(besakih_review))
 }
-
-#latitude <- -8.374368° N 
-#longitude <- 115.450935° E
 ```
 
 ```{r}
 #Sacred Monkey Forest
-# 4 star (tripadvisor)
 monkeyforest_review_ful <- data.frame()
 
 for (i in seq(5,500,5)) {
@@ -393,15 +429,10 @@ monkeyforest_review <- pages %>%
 
 monkeyforest_review_ful <- rbind(monkeyforest_review_ful,data.frame(monkeyforest_review))
 }
-
-#latitude <- -8.518823° N
-#longitude <- 115.258385° E
 ```
 
 ```{r}
 #Kuta
-
-#3.5 star (tripadivisor)
 
 kuta_review_ful <- data.frame()
 
@@ -415,14 +446,11 @@ kuta_review <- pages %>%
 
 kuta_review_ful <- rbind(kuta_review_ful, data.frame(kuta_review))
 }
-
-#latitude : -8.72052° N
-#longitude :  115.182° E
 ```
 
 ```{r}
 #mount batur
-#4.5 star (trip advisor)
+
 mountbatur_review_ful <- data.frame()
 
 for (i in seq(5,500,5)) {
@@ -435,15 +463,11 @@ mountbatur_review <- pages %>%
 
 mountbatur_review_ful <- rbind(mountbatur_review_ful, data.frame(mountbatur_review))
 }
-
-#latitude:-8.273214° N
-#longitude:115.347694° E
 ```
 
 ```{r}
 #Aling-Aling Waterfall
 
-#4.5 stars (trip advisor)
 aling_review_ful <- data.frame()
 
 for (i in seq(5,190,5)) {
@@ -456,17 +480,12 @@ aling_review <- pages %>%
 
 aling_review_ful <- rbind(aling_review_ful, data.frame(aling_review))
 }
-
-#latitude:-8.165020 N
-#longitude:115.103600 E
 ```
 
 ## Yogyakarta
 
 ```{r}
 #Borobudur Temple
-
-#4.5 star (Tripadvisor)
 
 borobudur_review_ful <- data.frame()
 
@@ -480,15 +499,10 @@ borobudur_review <- pages %>%
 
 borobudur_review_ful <- rbind(borobudur_review_ful, data.frame(borobudur_review))
 }
-
-#latitude : -7.608° N
-#longitude : 110.204° E
 ```
 
 ```{r}
 #Prambanan Temple
-
-# 4.5 star (Trip Advisor)
 
 prambanan_review_ful <- data.frame()
 
@@ -502,15 +516,10 @@ prambanan_review <- pages %>%
 
 prambanan_review_ful <- rbind(prambanan_review_ful, data.frame(prambanan_review))
 }
-
-#latitude: -7.75222° N
-#longitude: 110.49167° E
 ```
 
 ```{r}
 #Sultan Palace and Water Castle
-
-#3.5 star(trip advisor)
 
 castle_review_ful <- data.frame()
 
@@ -524,15 +533,10 @@ castle_review <- pages %>%
 
 castle_review_ful <- rbind(castle_review_ful, data.frame(castle_review))
 }
-
-#latitude :-7.810151° N
-#longitude: 110.35895° E
 ```
 
 ```{r}
 #Museum Batik Yogyakarta
-
-#4.5 star (trip advisor)
 
 link <- paste0("https://www.tripadvisor.com/Attraction_Review-g294230-d7707408-Reviews-Yogyakarta_Batik_Museum-Yogyakarta_Region_Java.html#REVIEWS")
 pages <- read_html(link)
@@ -555,13 +559,10 @@ batik_review_ful <- rbind(batik_review_ful, data.frame(batik_review))
 }
 
 batik_review_ful[nrow(batik_review_ful)+488] <- NA
-#latitude : -7.788980
-#longitude: 110.369180
 ```
 
 ```{r}
 #Malioboro
-#4 star (tripadvisor)
 
 malioboro_review_ful <- data.frame()
 for (i in seq(5,500,5)) {
@@ -574,17 +575,12 @@ malioboro_review <- pages %>%
 
 malioboro_review_ful <- rbind(malioboro_review_ful, data.frame(malioboro_review))
 }
-
-#latitude : -7.79309° N
-#longitude : 110.36544° E
 ```
 
 ## Makassar
 
 ```{r}
 #Losari Beach
-
-#3.5 star (trip advisor)
 
 losari_review_ful <- data.frame()
 for (i in seq(5,500,5)) {
@@ -597,15 +593,10 @@ losari_review <- pages %>%
 
 losari_review_ful <- rbind(losari_review_ful, data.frame(losari_review))
 }
-
-#latitude : -5.143590
-#longitude : 119.408070
 ```
 
 ```{r}
 #Rotterdam Fort
-
-#3.5 star (trip advisor)
 
 rott_review_ful <- data.frame()
 for (i in seq(5,500,5)) {
@@ -618,16 +609,10 @@ rott_review <- pages %>%
 
 rott_review_ful <- rbind(rott_review_ful, data.frame(rott_review))
 }
-
-#latitude : -5.134066199999999
-#longitude : 119.4046799
 ```
 
 ```{r}
 #Taka Bonerate Marine Park
-
-
-#4.5 star (trip advisor)
 
 link <- paste0("https://www.tripadvisor.com/Attraction_Review-g1087603-d6876770-Reviews-Taka_Bonerate_National_Park-Selayar_Island_South_Sulawesi_Sulawesi.html#REVIEWS")
 pages <- read_html(link)
@@ -648,15 +633,11 @@ batik_review <- pages %>%
 
 bonerate_review_ful <- rbind(bonerate_review_ful, data.frame(bonerate_review))
 }
-
-#latitude : -6.68333
-#longitude: 121.15
 ```
 
 ```{r}
 #Tanjung Bira
 
-#4 star (trip advisor)
 bira_review_ful <- data.frame()
 
 for (i in seq(5,75,5)) {
@@ -669,16 +650,10 @@ bira_review <- pages %>%
 
 bira_review_ful <- rbind(bira_review_ful, data.frame(bira_review))
 }
-
-#latitude : -5.6147
-#longitude: 120.4584
-
 ```
 
 ```{r}
 #Bantimurung National Park
-
-#3.5 star (tripadvisor)
 
 bantimurung_review_ful <- data.frame()
 
@@ -692,17 +667,12 @@ bantimurung_review <- pages %>%
 
 bantimurung_review_ful <- rbind(bantimurung_review_ful, data.frame(bantimurung_review))
 }
-
-#latitude : -5.0162561
-#longitude : 119.6815737
 ```
 
 ## Malang
 
 ```{r}
-#Batu secret Zoo     
-
-#4.5 star (tripadvisor)
+#Batu secret Zoo
 
 secretzoo_review_ful <- data.frame()
 
@@ -716,15 +686,10 @@ secretzoo_review <- pages %>%
 
 secretzoo_review_ful <- rbind(secretzoo_review_ful, data.frame(secretzoo_review))
 }
-
-#latitude : -7.888957500000001
-#longitude : 112.5296176
 ```
 
 ```{r}
 #Balekambang Beach
-
-#4 star (tripadvisor)
 
 balekambang_review_ful <- data.frame()
 
@@ -738,15 +703,10 @@ balekambang_review <- pages %>%
 
 balekambang_review_ful <- rbind(balekambang_review_ful, data.frame(balekambang_review))
 }
-
-#latitude : -7.888957500000001
-#longitude : 112.5296176
 ```
 
 ```{r}
 #jatim park
-
-# 4 star (tripadvisor)
 
 jatimpark_review_ful <- data.frame()
 
@@ -760,15 +720,10 @@ jatimpark_review <- pages %>%
 
 jatimpark_review_ful <- rbind(jatimpark_review_ful, data.frame(jatimpark_review))
 }
-
-#latitude : -7.8845017
-#longitude : , 112.5248818
 ```
 
 ```{r}
 #sumber pitu waterfall
-
-# 4.5 star (tripadvisor)
 
 sumberpitu_review_ful <- data.frame()
 
@@ -782,15 +737,10 @@ sumberpitu_review <- pages %>%
 
 sumberpitu_review_ful <- rbind(sumberpitu_review_ful, data.frame(sumberpitu_review))
 }
-
-#latitude : -8.0135832
-#longitude : 112.8217266
 ```
 
 ```{r}
 # Angkut Museum
-
-# 4.5 star (tripadvisor)
 
 museumangkut_review_ful <- data.frame()
 
@@ -804,17 +754,12 @@ museumangkut_review <- pages %>%
 
 museumangkut_review_ful <- rbind(museumangkut_review_ful, data.frame(museumangkut_review))
 }
-
-#latitude : -7.8786133
-#longitude : 112.5197779
 ```
 
 ## Bandung
 
 ```{r}
 #Kawah Putih or Bandung White Crater 
-
-# 4 star (trip advisor)
 
 whitecharter_review_ful <- data.frame()
 
@@ -828,15 +773,10 @@ whitecharter_review <- pages %>%
 
 whitecharter_review_ful <- rbind(whitecharter_review_ful, data.frame(whitecharter_review))
 }
-
-#latitude : -7.166203899999999
-#longitude : 107.4021256
 ```
 
 ```{r}
 #Tangkuban Perahu
-
-#3.5 star (tripadvisor)
 
 tangkubanperahu_review_ful <- data.frame()
 
@@ -850,15 +790,10 @@ tangkubanperahu_review <- pages %>%
 
 tangkubanperahu_review_ful <- rbind(tangkubanperahu_review_ful, data.frame(tangkubanperahu_review))
 }
-
-#latitude : -6.7596377
-#longitude :  107.6097807
 ```
 
 ```{r}
 #Dusun Bambu
-
-#4 star (tripadvisor)
 
 dusunbambu_review_ful <- data.frame()
 
@@ -872,15 +807,10 @@ dusunbambu_review <- pages %>%
 
 dusunbambu_review_ful <- rbind(dusunbambu_review_ful, data.frame(dusunbambu_review))
 }
-
-#latitude : -6.7894762
-#longitude :  107.5788285
 ```
 
 ```{r}
 #Saung Angklung Udjo Show
-
-#4.5 star (tripadvisor)
 
 saungangklung_review_ful <- data.frame()
 
@@ -894,15 +824,10 @@ saungangklung_review <- pages %>%
 
 saungangklung_review_ful <- rbind(saungangklung_review_ful, data.frame(saungangklung_review))
 }
-
-#latitude : -6.898032
-#longitude : 107.654965
 ```
 
 ```{r}
 #Ciater Hot Spring
-
-#3.5 star (tripadvisor)
 
 ciater_review_ful <- data.frame()
 
@@ -918,9 +843,6 @@ ciater_review_ful <- rbind(saungangklung_review_ful, data.frame(saungangklung_re
 }
 
 ciater_review_ful <- data.frame(ciater_review_ful[1:500,1])
-
-#latitude : -6.73775
-#longitude : 107.658639
 ```
 
 ```{r}
@@ -1002,3 +924,4 @@ Bandung_Review <- Bandung_Review %>%
   rename("Ciater" = "ciater_review_ful")
 write.csv(Bandung_Review, "Data/Bandung_Review.csv", row.names = FALSE)
 ```
+
