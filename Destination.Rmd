@@ -1,7 +1,5 @@
 ---
 title: "Destination Data Scraping"
-author: "Gerald Bryan"
-date: "07/12/2020"
 output: 
   html_document:
     toc: true

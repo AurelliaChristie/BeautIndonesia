@@ -36,5 +36,127 @@ library(rlist)
 
 # __Hotel Data Scraping__
 
+Scraping Function
+```{r}
+scrap_htl <- function(name){
+  # Iniate list for final output
+  Name <- list()
+  Description <- list()
+  Star <- list()
+  Long <- list()
+  Lat <- list()
+  
+  # Initiate General Form of Hotel Link (Source : Booking.com)
+  link_start <- paste0("https://www.booking.com/hotel/id/")
+  link_end <- paste0(".en-gb.html")
+  
+  # Scrape the data
+  for (i in 1: length(name)){
+    # Define the link
+    link <- paste0(link_start, name[i], link_end)
+    
+    # Reading HTML Code from the website
+    web <- read_html(link)
+    
+    # Specifying class of the data
+    ## Name
+    name_html <- html_node(web,".hp__hotel-name")
+    ## Description
+    desc_html <- html_node(web,"#property_description_content")
+    ## Star
+    star_html <- html_node(web,".bui-rating.bui-rating--smaller")
+    ## Latitude, Longitude
+    lglat_html <- html_node(web, ".jq_tooltip.loc_block_link_underline_fix.bui-link")
+    
+    # Converting the data to text
+    ## Name
+    name_data <- html_text(name_html, trim = TRUE)
+    name_data <- gsub(".*\n","",name_data)
+    ## Description
+    desc_data <- html_text(desc_html, trim = TRUE)
+    desc_data <- gsub("\n","",desc_data)
+    ## Star
+    star_data <- html_attr(star_html, "aria-label")
+    star_data <- substr(star_data,1,1)
+    ## Latitude, Longitude
+    lglat_data <- html_attr(lglat_html, "data-atlas-latlng")
+    lg_data <- sub(".*,","",lglat_data) 
+    lat_data <- sub(",.*","",lglat_data)
+    
+    # Combine data to one list
+    Name <- c(Name, name_data)
+    Description <- c(Description, desc_data)
+    Star <- c(Star, star_data)
+    Long <- c(Long, lg_data)
+    Lat <- c(Lat, lat_data)
+  }
+  
+  # Combine data to one data frame
+  Name <- Name %>% unlist()
+  Description <- Description %>% unlist()
+  Star <- Star %>% unlist()
+  Long <- Long %>% unlist()
+  Lat <- Lat %>% unlist()
+  Hotel <- data.frame(
+    "Name" = Name, 
+    "Description" = Description,
+    "Star" = Star,
+    "Long" = Long,
+    "Lat" = Lat)
+  return(Hotel)
+}
+```
 
+
+Use the Function to Scrap Hotel Data
+```{r}
+# Bali
+bali_htl <- c("grandmas-hotels-legian","amnaya-resort-benoa","radisson-blu-bali-uluwatu")
+bali <- scrap_htl(bali_htl)
+
+# Yogyakarta
+yogya_htl <- c("artotel-yogyakarta","grand-ambarrukmo-yogyakarta","yogyakarta-marriott")
+yogya <- scrap_htl(yogya_htl)
+
+# Makassar
+mksr_htl <- c("maxonehotels-com-at-resort-delia","harper-perintis", "the-rinra")
+mksr <- scrap_htl(mksr_htl)
+
+# Malang
+mlg_htl <- c("the-batu-villas","aston-inn-batu","golden-tulip-holland-resort-batu")
+mlg <- scrap_htl(mlg_htl)
+
+# Bandung
+bdg_htl <- c("yello-paskal-bandung","hyatt-regency-bandung","the-trans-luxury-bandung")
+bdg <- scrap_htl(bdg_htl)
+```
+
+Combine Final Output
+```{r}
+bl <- read.csv("Data/Bali_destination.csv")
+yg <- read.csv("Data/Yogya_destination.csv")
+mks <- read.csv("Data/Makassar_destination.csv")
+ml <- read.csv("Data/Malang_destination.csv")
+bd <- read.csv("Data/Bandung_destination.csv")
+
+colnames(bl) <- c("Name", "Description", "Star", "Long", "Lat")
+bl <- rbind(bl,bali)
+write.csv(bl, "Data/Bali_destination.csv", row.names = FALSE)
+
+colnames(yg) <- c("Name", "Description", "Star", "Long", "Lat")
+yg <- rbind(yg,yogya)
+write.csv(yg, "Data/Yogya_destination.csv", row.names = FALSE)
+
+colnames(mks) <- c("Name", "Description", "Star", "Long", "Lat")
+mks <- rbind(mks,mksr)
+write.csv(mks, "Data/Makassar_destination.csv", row.names = FALSE)
+
+colnames(ml) <- c("Name", "Description", "Star", "Long", "Lat")
+ml <- rbind(ml,mlg)
+write.csv(ml, "Data/Malang_destination.csv", row.names = FALSE)
+
+colnames(bd) <- c("Name", "Description", "Star", "Long", "Lat")
+bd <- rbind(bd,bdg)
+write.csv(bd, "Data/Bandung_destination.csv", row.names = FALSE)
+```
 
