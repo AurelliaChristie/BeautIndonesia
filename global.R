@@ -1,3 +1,4 @@
+# Library Setup
 library(shiny)
 library(shinydashboard)
 library(shinyjs)
@@ -16,7 +17,15 @@ library(visNetwork)
 library(dashboardthemes)
 library(ShinyRatingInput)
 
+# Place Recommendation Data
+
+# Travel Recommendation Data
+
+# Booking Application Data
+
+# Call ui & server
 source("ui.R")
 source("server.R")
 
+# Run App
 shinyApp(ui = ui,server = server)
