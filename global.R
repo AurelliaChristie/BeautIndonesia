@@ -59,11 +59,6 @@ for (i in 1: length(name)){
   Long <- c(Long, lg_data)
   Lat <- c(Lat, lat_data)
 }
-# Booking Application Data
-
-# Destination Data
-
-# About Us Data
 
 #Test
 
@@ -108,6 +103,12 @@ Bandung %>%
   )%>%
   addPolylines(~Long, ~Lat) %>%
   addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+
+# Booking Application Data
+
+# Destination Data
+
+# About Us Data
 
 # Call ui & server
 source("ui.R")
