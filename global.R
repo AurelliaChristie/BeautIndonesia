@@ -23,6 +23,8 @@ library(ShinyRatingInput)
 
 # Booking Application Data
 
+# Destination Data
+
 # Call ui & server
 source("ui.R")
 source("server.R")
