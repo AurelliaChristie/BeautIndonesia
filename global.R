@@ -23,6 +23,8 @@ library(ShinyRatingInput)
 
 # Booking Application Data
 
+# Destination Data
+
 # About Us Data
 
 # Call ui & server
