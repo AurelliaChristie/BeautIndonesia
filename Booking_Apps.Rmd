@@ -263,3 +263,4 @@ Save the dataframe to Booking_Apps.csv
 ```{r}
 write.csv(book_app,"Data/Booking_Apps.csv", row.names = FALSE)
 ```
+

@@ -56,70 +56,94 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  
                  # Booking Application Menu
                  tabPanel("Booking Application",
-                          column(4,div(class="panel panel-default",
-                                       div(class="panel-body",  
+                          column(4,div(class="panel panel-default",style="height:650px;",
+                                       div(class="panel-body",
+                                           div( align = "center", 
+                                                h3(tags$a(href="https://www.agoda.com/en-gb/?cid=-42","Agoda",style = "color: black;")),
                                            tags$div( align = "center",
-                                                     icon("bar-chart", class = "fa-4x"),
+                                                     HTML("<div style='height: 170px;width:200px;'>"), #remove unwanted white space
+                                                     imageOutput("Agoda"),
+                                                     HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5("Bubble output rating search from google")
+                                                          h5(strong("4.5"),br(),strong("Rating from Google Play Store"))
                                                      )
-                                           ),
-                                           tags$p(h6("Over 30 years of data were collected, which resulted in nearly 500,000 records of career movement. Several business rules were developed to ensure the data reflected real opportunities in the current classification system.")),
+                                           )),
+                                           div(style="text-align:center;",textOutput("Agoda_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",
+                          column(4,div(class="panel panel-default",style="height:650px;",
                                        div(class="panel-body",  
+                                           div( align = "center", 
+                                                h3(tags$a(href="https://www.booking.com/index.en-gb.html","Booking.com",style = "color: black;")),
                                            tags$div( align = "center",
-                                                     icon("bar-chart", class = "fa-4x"),
+                                                     HTML("<div style='height: 170px;width:200px;'>"),
+                                                     imageOutput("Booking"),
+                                                     HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5("Bubble output rating search from google")
+                                                          h5(strong("4.7"),br(),strong("Rating from Google Play Store"))
                                                      )
-                                           ),
-                                           tags$p(h6("Over 30 years of data were collected, which resulted in nearly 500,000 records of career movement. Several business rules were developed to ensure the data reflected real opportunities in the current classification system.")),
+                                           )),
+                                           div(style="text-align:center;",textOutput("Booking_desc")),
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",
+                          column(4,div(class="panel panel-default",style="height:650px;",
                                        div(class="panel-body",  
+                                           div( align = "center", 
+                                                h3(tags$a(href="https://www.pegipegi.com/","Pegipegi", style = "color: black;")),
                                            tags$div( align = "center",
-                                                     icon("bar-chart", class = "fa-4x"),
+                                                     HTML("<div style='height: 170px;width:200px;'>"),
+                                                     imageOutput("Pegipegi"),
+                                                     HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5("Bubble output rating search from google")
+                                                          h5(strong("4.6"),br(),strong("Rating from Google Play Store"))
                                                      )
-                                           ),
-                                           tags$p(h6("Over 30 years of data were collected, which resulted in nearly 500,000 records of career movement. Several business rules were developed to ensure the data reflected real opportunities in the current classification system.")),
+                                           )),
+                                           div(style="text-align:center;",textOutput("Pegipegi_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",
+                          column(4,div(class="panel panel-default",style="height:660px;",
                                        div(class="panel-body",  
+                                           div( align = "center", 
+                                                h3(tags$a(href="https://www.tiket.com/","Tiket.com",style = "color: black;")),
                                            tags$div( align = "center",
-                                                     icon("bar-chart", class = "fa-4x"),
+                                                     HTML("<div style='height: 170px;width:200px;'>"),
+                                                     imageOutput("Tiket"),
+                                                     HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5("Bubble output rating search from google")
+                                                          h5(strong("4.6"),br(),strong("Rating from Google Play Store"))
                                                      )
-                                           ),
-                                           tags$p(h6("Over 30 years of data were collected, which resulted in nearly 500,000 records of career movement. Several business rules were developed to ensure the data reflected real opportunities in the current classification system.")),
+                                           )),
+                                           div(style="text-align:center;",textOutput("Tiket_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",
-                                       div(class="panel-body",  
+                          column(4,div(class="panel panel-default",style="height:660px;",
+                                       div(class="panel-body",
+                                           div( align = "center", 
+                                                h3(tags$a(href="https://www.traveloka.com/en-id/","Traveloka",style = "color: black;")),
                                            tags$div( align = "center",
-                                                     icon("bar-chart", class = "fa-4x"),
+                                                     HTML("<div style='height: 170px;width:200px;'>"),
+                                                     imageOutput("Traveloka"),
+                                                     HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5("Bubble output rating search from google")
+                                                          h5(strong("4.8"),br(),strong("Rating from Google Play Store"))
                                                      )
-                                           ),
-                                           tags$p(h6("Over 30 years of data were collected, which resulted in nearly 500,000 records of career movement. Several business rules were developed to ensure the data reflected real opportunities in the current classification system.")),
+                                           )),
+                                           div(style="text-align:center;",textOutput("Traveloka_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",
-                                       div(class="panel-body",  
+                          column(4,div(class="panel panel-default",style="height:660px;",
+                                       div(class="panel-body",
+                                           div( align = "center", 
+                                                h3(tags$a(href="https://www.tripadvisor.com/","Tripadvisor",style = "color: black;")),
                                            tags$div( align = "center",
-                                                     icon("bar-chart", class = "fa-4x"),
+                                                     HTML("<div style='height: 170px;width:200px;'>"),
+                                                     imageOutput("Tripadvisor"),
+                                                     HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5("Bubble output rating search from google")
+                                                          h5(strong("4.4"),br(),strong("Rating from Google Play Store"))
                                                      )
-                                           ),
-                                           tags$p(h6("Over 30 years of data were collected, which resulted in nearly 500,000 records of career movement. Several business rules were developed to ensure the data reflected real opportunities in the current classification system.")),
+                                           )),
+                                           div(style="text-align:center;",textOutput("Tripadvisor_desc")),
                                            ))
                           )
                   ),
