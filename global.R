@@ -18,6 +18,8 @@ library(dashboardthemes)
 library(ShinyRatingInput)
 
 # Place Recommendation Data
+
+# Travel Recommendation Data
 for (i in 1: length(name)){
   # Define the link
   link <- paste0(link_start, name[i], link_end)
@@ -57,7 +59,7 @@ for (i in 1: length(name)){
   Long <- c(Long, lg_data)
   Lat <- c(Lat, lat_data)
 }
-# Travel Recommendation Data
+
 #Test
 
 Bandung <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Bandung_destination.csv")
