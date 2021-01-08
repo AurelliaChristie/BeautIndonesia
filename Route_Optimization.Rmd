@@ -1,0 +1,294 @@
+---
+title: "route optimization"
+author: "Gerald Bryan"
+date: "07/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(TSP)
+library(tibble)
+library(tidyverse)
+library(googleway)
+library(googlePolylines)
+library(leaflet)
+```
+
+#Bali
+
+```{r}
+Bali <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Bali_destination.csv")
+Bali <- tibble(Bali)
+Bali <- Bali[c(1:5,7),]
+```
+
+```{r}
+#convert long lat to distance
+
+dist_Bali <- dist(
+  Bali %>%
+    select(c(Long,Lat)),
+  method = "euclidean"
+)
+```
+
+```{r}
+#TSP algorithm
+
+tsp_Bali <- TSP(dist_Bali)
+
+route <- solve_TSP(tsp_Bali, method = "nn",control=list(start=6))
+
+path <- names(route)
+```
+
+```{r}
+# Prepare the data for plotting
+Bali <- Bali %>% 
+    mutate(
+        id_order = order(as.integer(path))
+    )
+
+```
+
+```{r}
+# Plot a map with the data and overlay the optimal path
+Bali %>% 
+    arrange(id_order) %>% 
+    leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(
+        ~Long,
+        ~Lat,
+        fillColor = 'red',
+        fillOpacity = 0.5,
+        stroke = FALSE,
+        label= ~as.character(Name)
+    )%>%
+addPolylines(~Long, ~Lat) %>%
+addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+```
+
+# Yogyakarta
+
+```{r}
+Yogyakarta <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Yogya_destination.csv")
+Yogyakarta <- tibble(Yogyakarta)
+Yogyakarta <- Yogyakarta[c(1:5,7),]
+```
+
+```{r}
+#convert long lat to distance
+
+dist_Yogyakarta <- dist(
+  Yogyakarta %>%
+    select(c(Long,Lat)),
+  method = "euclidean"
+)
+```
+
+```{r}
+#TSP algorithm
+
+tsp_Yogyakarta <- TSP(dist_Yogyakarta)
+
+route <- solve_TSP(tsp_Yogyakarta, method = "nn",control=list(start=6))
+
+path <- names(route)
+```
+
+```{r}
+# Prepare the data for plotting
+Yogyakarta <- Yogyakarta %>% 
+    mutate(
+        id_order = order(as.integer(path))
+    )
+
+```
+
+```{r}
+# Plot a map with the data and overlay the optimal path
+Yogyakarta %>% 
+    arrange(id_order) %>% 
+    leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(
+        ~Long,
+        ~Lat,
+        fillColor = 'red',
+        fillOpacity = 0.5,
+        stroke = FALSE,
+        label= ~as.character(Name)
+    )%>%
+addPolylines(~Long, ~Lat) %>%
+addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+```
+
+# Makassar
+
+```{r}
+Makassar <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Makassar_destination.csv")
+Makassar <- tibble(Makassar)
+Makassar <- Makassar[c(1:5,7),]
+```
+
+```{r}
+#convert long lat to distance
+
+dist_Makassar <- dist(
+  Makassar %>%
+    select(c(Long,Lat)),
+  method = "euclidean"
+)
+```
+
+```{r}
+#TSP algorithm
+
+tsp_Makassar <- TSP(dist_Makassar)
+
+route <- solve_TSP(tsp_Makassar, method = "nn",control=list(start=6))
+
+path <- names(route)
+```
+
+```{r}
+# Prepare the data for plotting
+Makassar <- Makassar %>% 
+    mutate(
+        id_order = order(as.integer(path))
+    )
+
+```
+
+```{r}
+# Plot a map with the data and overlay the optimal path
+Makassar %>% 
+    arrange(id_order) %>% 
+    leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(
+        ~Long,
+        ~Lat,
+        fillColor = 'red',
+        fillOpacity = 0.5,
+        stroke = FALSE,
+        label= ~as.character(Name)
+    )%>%
+addPolylines(~Long, ~Lat) %>%
+addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+```
+
+# Makassar
+
+```{r}
+Malang <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Malang_destination.csv")
+Malang <- tibble(Malang)
+Malang <- Malang[c(1:5,7),]
+```
+
+```{r}
+#convert long lat to distance
+
+dist_Malang <- dist(
+  Malang %>%
+    select(c(Long,Lat)),
+  method = "euclidean"
+)
+```
+
+```{r}
+#TSP algorithm
+
+tsp_Malang <- TSP(dist_Malang)
+
+route <- solve_TSP(tsp_Malang, method = "nn",control=list(start=6))
+
+path <- names(route)
+```
+
+```{r}
+# Prepare the data for plotting
+Malang <- Malang %>% 
+    mutate(
+        id_order = order(as.integer(path))
+    )
+
+```
+
+```{r}
+# Plot a map with the data and overlay the optimal path
+Malang %>% 
+    arrange(id_order) %>% 
+    leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(
+        ~Long,
+        ~Lat,
+        fillColor = 'red',
+        fillOpacity = 0.5,
+        stroke = FALSE,
+        label= ~as.character(Name)
+    )%>%
+addPolylines(~Long, ~Lat) %>%
+addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+```
+
+# Bandung
+
+```{r}
+Bandung <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Bandung_destination.csv")
+Bandung <- tibble(Bandung)
+Bandung <- Bandung[c(1:5,7),]
+```
+
+```{r}
+#convert long lat to distance
+
+dist_Bandung <- dist(
+  Bandung %>%
+    select(c(Long,Lat)),
+  method = "euclidean"
+)
+```
+
+```{r}
+#TSP algorithm
+
+tsp_Bandung <- TSP(dist_Bandung)
+
+route <- solve_TSP(tsp_Bandung, method = "nn",control=list(start=6))
+
+path <- names(route)
+```
+
+```{r}
+# Prepare the data for plotting
+Bandung <- Bandung %>% 
+    mutate(
+        id_order = order(as.integer(path))
+    )
+
+```
+
+```{r}
+# Plot a map with the data and overlay the optimal path
+Bandung %>% 
+    arrange(id_order) %>% 
+    leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(
+        ~Long,
+        ~Lat,
+        fillColor = 'red',
+        fillOpacity = 0.5,
+        stroke = FALSE,
+        label= ~as.character(Name)
+    )%>%
+addPolylines(~Long, ~Lat) %>%
+addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+```
