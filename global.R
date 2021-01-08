@@ -58,13 +58,6 @@ for (i in 1: length(name)){
   Lat <- c(Lat, lat_data)
 }
 # Travel Recommendation Data
-
-# Booking Application Data
-
-# Destination Data
-
-# About Us Data
-
 #Test
 
 Bandung <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Bandung_destination.csv")
@@ -108,6 +101,12 @@ Bandung %>%
   )%>%
   addPolylines(~Long, ~Lat) %>%
   addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+
+# Booking Application Data
+
+# Destination Data
+
+# About Us Data
 
 # Call ui & server
 source("ui.R")
