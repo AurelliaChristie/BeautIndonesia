@@ -18,6 +18,8 @@ library(dashboardthemes)
 library(ShinyRatingInput)
 
 # Place Recommendation Data
+
+# Travel Recommendation Data
 for (i in 1: length(name)){
   # Define the link
   link <- paste0(link_start, name[i], link_end)
@@ -57,8 +59,6 @@ for (i in 1: length(name)){
   Long <- c(Long, lg_data)
   Lat <- c(Lat, lat_data)
 }
-# Travel Recommendation Data
-
 # Booking Application Data
 
 # About Us Data
