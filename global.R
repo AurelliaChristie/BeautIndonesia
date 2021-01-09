@@ -22,8 +22,10 @@ library(ShinyRatingInput)
 # Travel Recommendation Data
 
 # Booking Application Data
+  Booking_Apps <- read.csv("Data/Booking_Apps.csv")
+  
+# About Us Data
 
-# Destination Data
 
 # Call ui & server
 source("ui.R")
