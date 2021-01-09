@@ -56,7 +56,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  
                  # Booking Application Menu
                  tabPanel("Booking Application",
-                          column(4,div(class="panel panel-default",style="height:650px;",
+                          column(4,div(class="panel panel-default",style="height:550px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.agoda.com/en-gb/?cid=-42","Agoda",style = "color: black;")),
@@ -64,14 +64,18 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                      HTML("<div style='height: 170px;width:200px;'>"), #remove unwanted white space
                                                      imageOutput("Agoda"),
                                                      HTML("</div>"),
-                                                     div( align = "center", 
-                                                          h5(strong("4.5"),br(),strong("Rating from Google Play Store"))
+                                                     div( align = "center",
+                                                          includeCSS("www/CSS/stars.css"),
+                                                          tags$div(class = "ratings",
+                                                                   tags$div(class = "empty-stars",
+                                                                            uiOutput("Agoda_stars")),div(style="color: black;",strong("4.5"))),
+                                                          h5(strong("Rating from Google Play Store"))
                                                      )
                                            )),
-                                           div(style="text-align:center;",textOutput("Agoda_desc"))
+                                           div(style="text-align:justify;",textOutput("Agoda_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:650px;",
+                          column(4,div(class="panel panel-default",style="height:550px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.booking.com/index.en-gb.html","Booking.com",style = "color: black;")),
@@ -80,13 +84,16 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                      imageOutput("Booking"),
                                                      HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5(strong("4.7"),br(),strong("Rating from Google Play Store"))
+                                                          tags$div(class = "ratings",
+                                                                   tags$div(class = "empty-stars",
+                                                                            uiOutput("Booking_stars")),div(style="color: black;",strong("4.7"))),
+                                                          h5(strong("Rating from Google Play Store"))
                                                      )
                                            )),
-                                           div(style="text-align:center;",textOutput("Booking_desc")),
+                                           div(style="text-align:justify;",textOutput("Booking_desc")),
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:650px;",
+                          column(4,div(class="panel panel-default",style="height:550px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.pegipegi.com/","Pegipegi", style = "color: black;")),
@@ -95,13 +102,16 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                      imageOutput("Pegipegi"),
                                                      HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5(strong("4.6"),br(),strong("Rating from Google Play Store"))
+                                                          tags$div(class = "ratings",
+                                                                   tags$div(class = "empty-stars",
+                                                                            uiOutput("Pegipegi_stars")),div(style="color: black;",strong("4.6"))),
+                                                          h5(strong("Rating from Google Play Store"))
                                                      )
                                            )),
-                                           div(style="text-align:center;",textOutput("Pegipegi_desc"))
+                                           div(style="text-align:justify;",textOutput("Pegipegi_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:660px;",
+                          column(4,div(class="panel panel-default",style="height:565px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.tiket.com/","Tiket.com",style = "color: black;")),
@@ -110,13 +120,16 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                      imageOutput("Tiket"),
                                                      HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5(strong("4.6"),br(),strong("Rating from Google Play Store"))
+                                                          tags$div(class = "ratings",
+                                                                   tags$div(class = "empty-stars",
+                                                                            uiOutput("Tiket_stars")),div(style="color: black;",strong("4.6"))),
+                                                          h5(strong("Rating from Google Play Store"))
                                                      )
                                            )),
-                                           div(style="text-align:center;",textOutput("Tiket_desc"))
+                                           div(style="text-align:justify;",textOutput("Tiket_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:660px;",
+                          column(4,div(class="panel panel-default",style="height:565px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.traveloka.com/en-id/","Traveloka",style = "color: black;")),
@@ -125,13 +138,16 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                      imageOutput("Traveloka"),
                                                      HTML("</div>"),
                                                      div( align = "center", 
-                                                          h5(strong("4.8"),br(),strong("Rating from Google Play Store"))
+                                                          tags$div(class = "ratings",
+                                                                   tags$div(class = "empty-stars",
+                                                                            uiOutput("Traveloka_stars")),div(style="color: black;",strong("4.8"))),
+                                                          h5(strong("Rating from Google Play Store"))
                                                      )
                                            )),
-                                           div(style="text-align:center;",textOutput("Traveloka_desc"))
+                                           div(style="text-align:justify;",textOutput("Traveloka_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:660px;",
+                          column(4,div(class="panel panel-default",style="height:565px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.tripadvisor.com/","Tripadvisor",style = "color: black;")),
@@ -139,18 +155,28 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                      HTML("<div style='height: 170px;width:200px;'>"),
                                                      imageOutput("Tripadvisor"),
                                                      HTML("</div>"),
-                                                     div( align = "center", 
-                                                          h5(strong("4.4"),br(),strong("Rating from Google Play Store"))
+                                                     div( align = "center",
+                                                          tags$div(class = "ratings",
+                                                                   tags$div(class = "empty-stars",
+                                                                            uiOutput("Tripadvisor_stars")),div(style="color: black;",strong("4.4"))),
+                                                          h5(strong("Rating from Google Play Store"))
                                                      )
                                            )),
-                                           div(style="text-align:center;",textOutput("Tripadvisor_desc")),
+                                           div(style="text-align:justify;",textOutput("Tripadvisor_desc")),
                                            ))
                           )
-                  ),
+                  ), 
                  
                  # About Us Menu
                  tabPanel("About Us",
-                          "Helloooooo we are grepinnnn hehehe"
+                          "Helloooooo we are grepinnnn hehehe",
+                          br(),
+                          br(),
+                          actionLink("openModal",
+                                             icon = icon("globe"),
+                                             label = "Source",
+                                  class = "dropdown",
+                                  style='padding:4px; font-size:20px')
                           
                  )
 )
