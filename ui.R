@@ -169,14 +169,79 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  
                  # About Us Menu
                  tabPanel("About Us",
-                          "Helloooooo we are grepinnnn hehehe",
+                          div(style="text-align: center;font-size: 70px;font-family: Helvetica;",
+                              "Travel Planner"),
+                          div(style="text-align: center;",actionLink("openModal",
+                                     icon = icon("globe"),
+                                     label = "Sources",
+                                     class = "dropdown",
+                                     style='padding:4px; font-size:20px')),
+                          hr(),
+                          br(),
+                          column(5,offset = 1,
+                                 "Arguments
+expr	
+An expression that returns a list.
+
+env	
+The environment in which to evaluate expr.
+
+quoted	
+Is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
+
+deleteFile	
+Should the file in func()$src be deleted after it is sent to the client browser? Generally speaking, if the image is a temp file generated within func, then this should be TRUE; if the image is not a temp file, this should be FALSE. (For backward compatibility reasons, if this argument is missing, a warning will be emitted, and if the file is in the temp directory it will be deleted. In the future, this warning will become an error.)
+
+outputArgs	
+A list of arguments to be passed through to the implicit call to imageOutput() when renderImage is used in an interactive R Markdown document.
+
+Details
+The expression expr must return a list containing the attributes for the img object on the client web page. For the image to display, properly, the list must have at least one entry, src, which is the path to the image file. It may also useful to have a contentType entry specifying the MIME type of the image. If one is not provided, renderImage will try to autodetect the type, based on the file extension.
+
+Other elements such as width, height, class, and alt, can also be added to the list, and they will be used as attributes in the img object.
+
+The corresponding HTML output tag should be div or img and have the CSS class name shiny-image-output.
+
+See Also
+For more details on how the images are generated, and how to control the output, see plotPNG().
+
+Examples"),
                           br(),
                           br(),
-                          actionLink("openModal",
-                                             icon = icon("globe"),
-                                             label = "Source",
-                                  class = "dropdown",
-                                  style='padding:4px; font-size:20px')
-                          
+                          column(6,offset = 0,
+                                 imageOutput("Indonesia")),
+                          br(),
+                          br(),
+                          br(),
+                          br(),
+                          div(style="text-align: center;font-size: 50px;font-family: Helvetica;",
+                              "The Creator"),
+                          hr(),
+                          br(),
+                          column(6,offset=0,
+                                 div(class="panel panel-default",
+                                      div(class="panel-body",
+                                          div(style="text-align: center;",
+                                              HTML("<div style='height: 310px'>"),
+                                              imageOutput("Aurel"),
+                                              HTML("</div>"),
+                                              tags$a(href="https://www.linkedin.com/in/aurellia-christie-059892179/",icon("linkedin"),style='padding:4px; font-size:25px'),
+                                              tags$a(href="https://github.com/AurelliaChristie", icon("github"),style='padding:4px; font-size:25px')
+                                              ),
+                                          div(style="text-align:center;","Enter your profile")
+                                        ))),
+                                 
+                          column(6,offset = 0,
+                                 div(class="panel panel-default",
+                                     div(class="panel-body",
+                                        div(style="text-align: center;",
+                                            HTML("<div style='height: 310px'>"),
+                                            imageOutput("Gerald"),
+                                            HTML("</div>"),
+                                            tags$a(href="https://www.linkedin.com/in/geraldbryan/",icon("linkedin"),style='padding:4px; font-size:25px'),
+                                            tags$a(href="https://github.com/geraldbryan", icon("github"),style='padding:4px; font-size:25px')
+                                        ),
+                                        div(style="text-align:center;","Enter your profile")
+                                      )))
                  )
 )

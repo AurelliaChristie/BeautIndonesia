@@ -97,6 +97,23 @@ server <- function(input, output) {
     
     # About Us
     
+    ## Image
+    
+     output$Indonesia <- renderImage({list(src = "www/About_us/Indonesia.png",
+                                           contentType = "image/png",width=600, height=275,
+                                           alt = "Face")
+                                    })
+     
+     output$Aurel <- renderImage({list(src = "www/About_us/Aurel.jpg",
+                                       contentType = "image/png",width=200, height=300,
+                                       alt = "Face")
+                                })
+    
+     output$Gerald <- renderImage({list(src = "www/About_us/Gerald.jpg",
+                                       contentType = "image/png",width=200, height=300,
+                                       alt = "Face")
+     })
+     
     ## Source 
     
     observeEvent(input$openModal, {
