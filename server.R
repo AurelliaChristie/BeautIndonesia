@@ -140,12 +140,12 @@ server <- function(input, output) {
                                       })
 
        output$Aurel <- renderImage({list(src = "www/About_us/Aurel.jpg",
-                                         contentType = "image/png",width=200, height=300,
+                                         contentType = "image/png",width=180, height=200,
                                          alt = "Face")
                                   })
 
        output$Gerald <- renderImage({list(src = "www/About_us/Gerald.jpg",
-                                         contentType = "image/png",width=200, height=300,
+                                         contentType = "image/png",width=180, height=200,
                                          alt = "Face")
        })
 
