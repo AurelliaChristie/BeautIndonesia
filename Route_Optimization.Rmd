@@ -1,12 +1,29 @@
 ---
-title: "route optimization"
-author: "Gerald Bryan"
-date: "07/01/2021"
-output: html_document
+title: "Route Optimization"
+output: 
+  html_document:
+    toc: true
+    toc_float: 
+      collapsed: false
+      smooth_scroll: true
+    number_sections: true
+    theme: united
+    highlight: espresso
+    df_print: paged
+    code_folding: show
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  class.output = ".scroll-500",
+  comment = "#>"
+)
+options(scipen = 9999)
+options(warn = -1) # remove warning messages
 ```
 
 ```{r}
@@ -21,7 +38,7 @@ library(leaflet)
 #Bali
 
 ```{r}
-Bali <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Bali_destination.csv")
+Bali <- read.csv("Data/Bali_destination.csv")
 Bali <- tibble(Bali)
 Bali <- Bali[c(1:5,7),]
 ```

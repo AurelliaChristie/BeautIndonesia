@@ -1,27 +1,46 @@
 # Library Setup
 library(shiny)
-library(shinydashboard)
 library(shinyjs)
-library(shinydashboardPlus)
-library(shinyWidgets)
 library(shinyalert)
 library(dplyr)
-library(rcompanion)
 library(tidyverse)
-library(GGally)
-library(plotly)
-library(abind)
-library(timeDate)
-library(rvest)
-library(visNetwork)
-library(dashboardthemes)
 library(ShinyRatingInput)
+library(htmlwidgets)
+library(leaflet)
+library(htmltools)
+library(glue)
 
 # Place Recommendation Data
 
+  ## Search Ratings Map
+  
+    ### Read Data
+    Search_Rating <- read.csv("Data/Place_Rating_Score.csv")
+    Search_Rating <- Search_Rating %>% 
+      mutate("Scaled_Rating" = Searching.Rating * 10)
+    
+    ### Separate Bali & non Bali
+    Bali_Search <- Search_Rating %>%  filter(Place == "Bali")
+    Nonbali_Search <- Search_Rating %>% filter(Place != "Bali")
+    
+    ### Color Palette
+    Pal <- colorNumeric(palette = "Reds", domain = Nonbali_Search$Scaled_Rating)
+    
+    ### Bali Map Labels
+    Bali_Lab <- glue("
+                     <b>{Bali_Search$Place}</b><br>  Interest Over Time: {round(Bali_Search$Searching.Rating, 2)}"
+                     ) %>% lapply(HTML)
+
+    ### Non Bali Map Labels
+    Nonbali_Lab <- glue("
+                     <b>{Nonbali_Search$Place}</b><br> Interest Over Time: {round(Nonbali_Search$Searching.Rating, 2)}"
+    ) %>% lapply(HTML)
+    
 # Travel Recommendation Data
 
 # Booking Application Data
+  
+  ## Read Data
   Booking_Apps <- read.csv("Data/Booking_Apps.csv")
   
 # About Us Data
