@@ -45,7 +45,6 @@ We gather the search trend from 30 cities in Indonesia based on searching for **
 
 ```{r}
 city <- read.csv("Data/Place_Rating_Score.csv")
-city
 ```
 
 # Data Processing

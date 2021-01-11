@@ -118,12 +118,12 @@ for(i in 1:6){
   # Combine logo name in one list
   logo_data <- c(logo_data, name)
   # Download the logo
-  download.file(logo_src, paste0("Logo/",name,".jpg"), mode='wb')
+  download.file(logo_src, paste0("www/Logo/",name,".jpg"), mode='wb')
 }
 
 # Add logo path to the book_app dataframe
 book_app <- book_app %>%  
-  mutate("Logo_Path" = paste0("Logo/", logo_data, ".jpg"))
+  mutate("Logo_Path" = paste0("www/Logo/", logo_data, ".jpg"))
 ```
 
 Overview of the Data
