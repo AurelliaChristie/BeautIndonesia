@@ -41,9 +41,7 @@ server <- function(input, output) {
         
         ### Read Input Data
         
-        City_read <- input$Destination
-        
-        output$city <- renderTable(class(City_read()))
+        City_read <- reactive({get(input$Destination)}) #to call dataframe use 'get()' function
         
         Stars <- reactive({as.numeric(input$Star)+4})
         
@@ -51,7 +49,7 @@ server <- function(input, output) {
         
         ### Prepare Data for Route Optimization
         
-        City_tibble <- reactive({tibble(City_df())})
+        City_tibble <- reactive({tibble(City_read())})
         City_data <- reactive({City_tibble()[c(1:5,Stars_max7()),]})
        
         ### convert long lat to distance
@@ -61,26 +59,25 @@ server <- function(input, output) {
             select(c(Long,Lat)),
           method = "euclidean"
         )})
-        
+       
         ### TSP algorithm
         
         tsp_City <- reactive({TSP(dist_City())})
         
         Route <- reactive({solve_TSP(tsp_City(), method = "nn",control=list(start=6))})
         
-        Path <- reactive({names(Route)})
-        
+        Path <- reactive({names(Route())})
         
         ### Prepare the data for plotting
-        City <- reactive({City() %>%
+        City_prep <- reactive({City_data() %>%
             mutate(id_order = order(as.integer(Path()))
             )})
         
         ### Plot a map with the data and overlay the optimal path
         
         City_map <- reactive({
-          City() %>% 
-            arrange(id_order()) %>% 
+          City_prep() %>% 
+            arrange(id_order) %>% 
             leaflet() %>% 
             addTiles() %>% 
             addCircleMarkers(

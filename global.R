@@ -51,19 +51,19 @@ library(leaflet)
     
     ### Yogyakarta
     
-    Yogyakarta_dest <- read.csv("data/Bali_destination.csv")
+    Yogyakarta_dest <- read.csv("data/Yogya_destination.csv")
     
     ### Makassar
     
-    Makassar_dest <- read.csv("data/Bali_destination.csv")
+    Makassar_dest <- read.csv("data/Makassar_destination.csv")
     
     ### Malang
     
-    Malang_dest <- read.csv("data/Bali_destination.csv")
+    Malang_dest <- read.csv("data/Malang_destination.csv")
     
     ### Bandung
     
-    Bandung_dest <- read.csv("data/Bali_destination.csv")
+    Bandung_dest <- read.csv("data/Bandung_destination.csv")
     
 # Booking Application Data
   
