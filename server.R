@@ -37,6 +37,65 @@ server <- function(input, output) {
     
     # Travel Recommendation
     
+      ## Route Optimization
+        
+        ### Read Input Data
+        
+        City_read <- input$Destination
+        
+        output$city <- renderTable(class(City_read()))
+        
+        Stars <- reactive({as.numeric(input$Star)+4})
+        
+        Stars_max7 <- reactive({ifelse(Stars() <= 7, 7,Stars())})
+        
+        ### Prepare Data for Route Optimization
+        
+        City_tibble <- reactive({tibble(City_df())})
+        City_data <- reactive({City_tibble()[c(1:5,Stars_max7()),]})
+       
+        ### convert long lat to distance
+        
+        dist_City <- reactive({dist(
+          City_data() %>%
+            select(c(Long,Lat)),
+          method = "euclidean"
+        )})
+        
+        ### TSP algorithm
+        
+        tsp_City <- reactive({TSP(dist_City())})
+        
+        Route <- reactive({solve_TSP(tsp_City(), method = "nn",control=list(start=6))})
+        
+        Path <- reactive({names(Route)})
+        
+        
+        ### Prepare the data for plotting
+        City <- reactive({City() %>%
+            mutate(id_order = order(as.integer(Path()))
+            )})
+        
+        ### Plot a map with the data and overlay the optimal path
+        
+        City_map <- reactive({
+          City() %>% 
+            arrange(id_order()) %>% 
+            leaflet() %>% 
+            addTiles() %>% 
+            addCircleMarkers(
+              ~Long,
+              ~Lat,
+              fillColor = 'red',
+              fillOpacity = 0.5,
+              stroke = FALSE,
+              label= ~as.character(Name)
+            )%>%
+            addPolylines(~Long, ~Lat) %>%
+            addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+        })
+        
+        output$Route_map <- renderLeaflet(City_map())
     # Booking Application
     
       ## Traveloka

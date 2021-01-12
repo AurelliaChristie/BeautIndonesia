@@ -37,11 +37,15 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  tabPanel("Travel Recommendation",
                           sidebarLayout(
                               sidebarPanel(
-                                  selectInput("Destination", "Travel Destination", choices = c("Bali", "Yogyakarta","Makassar","Malang","Bandung"),selected = "Bali"),
-                                  ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1), br(),
-                                  actionButton("Ok_TR","Submit")
+                                  selectInput("Destination", "Travel Destination", choices = c("Bali"="Bali_dest", 
+                                                                                               "Yogyakarta"="Yogyakarta_dest",
+                                                                                               "Makassar"="Makassar_dest",
+                                                                                               "Malang"="Malang_dest",
+                                                                                               "Bandung"="Bandung_dest"),selected = "Bali"),
+                                  ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1,value=3), br(),
+                                  
                               ),
-                              mainPanel()
+                              mainPanel(tableOutput("city"))
                           )
                  ),
                  
