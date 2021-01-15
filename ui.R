@@ -43,8 +43,10 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                                                                                "Malang"="Malang_dest",
                                                                                                "Bandung"="Bandung_dest"),selected = "Bali"),
                                   ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1,value=3), br(),
+                                  actionButton("Submit","Submit")
                               ),
-                              mainPanel(leafletOutput("Route_map"))
+                              mainPanel(leafletOutput("Route_map"),
+                                        uiOutput("Place"))
                           )
                  ),
                  

@@ -41,9 +41,9 @@ server <- function(input, output) {
         
         ### Read Input Data
         
-        City_read <- reactive({get(input$Destination)}) #to call dataframe use 'get()' function
+        City_read <- eventReactive(input$Submit,{get(input$Destination)}) #to call dataframe use 'get()' function
         
-        Stars <- reactive({as.numeric(input$Star)+4})
+        Stars <- eventReactive(input$Submit,{as.numeric(input$Star)+4})
         
         Stars_max7 <- reactive({ifelse(Stars() <= 7, 7,Stars())})
         
@@ -88,11 +88,52 @@ server <- function(input, output) {
               stroke = FALSE,
               label= ~as.character(Name)
             )%>%
-            addPolylines(~Long, ~Lat) %>%
-            addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+            addPolylines(lng = ~Long, lat = ~Lat, options = list(need_decorator = TRUE)) %>%
+            addMarkers(lng = ~Long, lat = ~Lat,labelOptions = labelOptions(noHide = T)) %>%
+            registerPlugin(polylineDecoratorPlugin) %>%
+            fitBounds(~min(Long), ~min(Lat), ~max(Long), ~max(Lat)) %>%
+            htmlwidgets::onRender(
+              "function(el,x,data) {
+          var myMap = this;
+          myMap.on('layeradd',
+            function(e) {
+              var lyr = e.layer;
+              if ('need_decorator' in lyr.options) {
+                var dec = L.polylineDecorator(lyr, {
+                  patterns: [
+                    {offset: 0, repeat: '20%', symbol: L.Symbol.arrowHead({pixelSize:15, pathOptions:{stroke:true}})}
+                  ]
+                }).addTo(myMap);
+              }
+            }
+          );
+
+        }")
+        
+        })
+        
+        observe({
+          
+          selection <- City_prep()
+          
+          n <- leafletProxy("City_map", data = selection)  %>%
+            clearShapes()
+          
+          n <- n %>%
+            addPolylines(lng = ~Long,
+                         lat = ~Lat,
+                         options = list(need_decorator = T)
+            )
         })
         
         output$Route_map <- renderLeaflet(City_map())
+           
+      ## Destination Place selectInput
+        
+        output$Place <- renderUI({
+          selectInput("Dest_place", "Destination Place", choices = City_read()[c(1:5,Stars_max7()),1])
+        })
+                                         
     # Booking Application
     
       ## Traveloka
