@@ -160,3 +160,408 @@ bd <- rbind(bd,bdg)
 write.csv(bd, "Data/Bandung_destination.csv", row.names = FALSE)
 ```
 
+
+# __Hotel Review Scraping__
+
+
+Bali
+```{r}
+# Iniate list for final output
+Grandmas <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com.au/Hotel_Review-g608487-d3389491-Reviews-or",i,"-Grandmas_Plus_Hotel_Legian-Legian_Kuta_District_Bali.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  grandmas_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Grandmas <- c(Grandmas, grandmas_review)
+}
+
+Grandmas <- Grandmas %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Amnaya <- list()
+
+# Scrape the data
+for (i in seq(5,395,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g1465999-d19270238-Reviews-or",i,"-Amnaya_Resort_Benoa-Tanjung_Benoa_Nusa_Dua_Peninsula_Bali.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  amnaya_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Amnaya <- c(Amnaya, amnaya_review)
+}
+
+Amnaya <- Amnaya %>% unlist()
+```
+
+
+```{r}
+# Iniate list for final output
+Radisson <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com.au/Hotel_Review-g8366411-d13169927-Reviews-or",i,"-Radisson_Blu_Bali_Uluwatu-Uluwatu_Bali.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  radisson_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Radisson <- c(Radisson, radisson_review)
+}
+
+Radisson <- Radisson %>% unlist()
+```
+
+```{r}
+bali <- read.csv("Data/Bali_Review.csv")
+bali <- bali %>% 
+  mutate("Grandmas" = Grandmas) %>% 
+  mutate("Amnaya" = Amnaya) %>% 
+  mutate("Radisson" = Radisson)
+write.csv(bali, "Data/Bali_Review.csv", row.names = FALSE)
+```
+
+
+Yogyakarta
+
+```{r}
+# Iniate list for final output
+Artotel <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g294230-d13229706-Reviews-or",i,"-Artotel_Yogyakarta-Yogyakarta_Region_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  artotel_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Artotel <- c(Artotel, artotel_review)
+}
+
+Artotel <- Artotel %>% unlist() 
+```
+
+```{r}
+# Iniate list for final output
+Grand <- list()
+
+# Scrape the data
+for (i in seq(5,125,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g294230-d12526280-Reviews-or",i,"-Grand_Ambarrukmo_Hotel-Yogyakarta_Region_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  grand_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Grand <- c(Grand, grand_review)
+}
+
+Grand <- Grand %>% unlist() 
+```
+
+```{r}
+# Iniate list for final output
+Yogyakarta <- list()
+
+# Scrape the data
+for (i in seq(5,330,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g5074492-d13008958-Reviews-or",i,"-Yogyakarta_Marriott_Hotel-Depok_Sleman_District_Yogyakarta_Region_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  yogyakarta_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Yogyakarta <- c(Yogyakarta, yogyakarta_review)
+}
+
+Yogyakarta <- Yogyakarta %>% unlist()
+```
+
+
+```{r}
+yogya <- read.csv("Data/Yogyakarta_Review.csv")
+yogya <- yogya %>%
+  mutate("Artotel" = Artotel) %>% 
+  mutate("Grand" = Grand) %>% 
+  mutate("Yogyakarta" = Yogyakarta)
+write.csv(yogya, "Data/Yogyakarta_Review.csv", row.names = FALSE)
+```
+
+Malang
+
+```{r}
+# Iniate list for final output
+The <- list()
+
+# Scrape the data
+for (i in seq(25,60,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g1237079-d4886640-Reviews-or",i,"-The_Batu_Villas-Batu_East_Java_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  the_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  The <- c(The, the_review)
+}
+
+The <- The %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Aston <- list()
+
+# Scrape the data
+for (i in seq(5,130,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g1237079-d14932735-Reviews-or",i,"-Aston_Inn_Batu-Batu_East_Java_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  aston_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Aston <- c(Aston, aston_review)
+}
+
+Aston <- Aston %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Golden <- list()
+
+# Scrape the data
+for (i in seq(30,215,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g1237079-d12441074-Reviews-or",i,"-Golden_Tulip_Holland_Resort_Batu-Batu_East_Java_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  golden_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Golden <- c(Golden, golden_review)
+}
+
+Golden <- Golden %>% unlist()
+```
+
+```{r}
+malang <- read.csv("Data/Malang_Review.csv")
+malang <- malang %>%
+  mutate("The" = The) %>% 
+  mutate("Aston" = Aston) %>% 
+  mutate("Golden" = Golden)
+write.csv(malang, "Data/Malang_Review.csv", row.names = FALSE)
+```
+
+Makassar
+
+```{r}
+# Iniate list for final output
+MaxOneHotels <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g297720-d10054230-Reviews-or",i,"-MaxOneHotels_Resort_Makassar-Makassar_South_Sulawesi_Sulawesi.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  maxonehotels_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  MaxOneHotels <- c(MaxOneHotels, maxonehotels_review)
+}
+
+MaxOneHotels <- MaxOneHotels %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Harper <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g297720-d10627713-Reviews-or",i,"-Harper_Perintis_Makassar-Makassar_South_Sulawesi_Sulawesi.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  harper_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Harper <- c(Harper, harper_review)
+}
+
+Harper <- Harper %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Rinra <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g297720-d10148712-Reviews-or",i,"-The_Rinra_Makassar-Makassar_South_Sulawesi_Sulawesi.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  rinra_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Rinra <- c(Rinra, rinra_review)
+}
+
+Rinra <- Rinra %>% unlist()
+```
+
+```{r}
+makassar <- read.csv("Data/Makassar_Review.csv")
+makassar <- makassar %>%
+  mutate("MaxOneHotels" = MaxOneHotels) %>% 
+  mutate("Harper" = Harper) %>% 
+  mutate("Rinra" = Rinra)
+write.csv(makassar, "Data/Makassar_Review.csv", row.names = FALSE)
+```
+
+Bandung
+
+```{r}
+# Iniate list for final output
+YELLO <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g297704-d13990373-Reviews-or",i,"-YELLO_Hotel_Paskal-Bandung_West_Java_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  YELLO_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  YELLO <- c(YELLO, YELLO_review)
+}
+
+YELLO <- YELLO %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Aryaduta <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g297704-d307171-Reviews-or",i,"-Aryaduta_Bandung-Bandung_West_Java_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  aryaduta_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Aryaduta <- c(Aryaduta, aryaduta_review)
+}
+
+Aryaduta <- Aryaduta %>% unlist()
+```
+
+```{r}
+# Iniate list for final output
+Trans <- list()
+
+# Scrape the data
+for (i in seq(5,500,5)) {
+  
+  ## Define the link
+  link <- paste0("https://www.tripadvisor.com/Hotel_Review-g297704-d3226872-Reviews-or",i,"-The_Trans_Luxury_Hotel-Bandung_West_Java_Java.html#REVIEWS")
+  pages <- read_html(link)
+  
+  ## Scrape
+  trans_review <- pages %>% 
+        html_nodes("q.IRsGHoPm") %>%
+        html_text()
+  
+  ## Combine scrape result to the list
+  Trans <- c(Trans, trans_review)
+}
+
+Trans <- Trans %>% unlist()
+```
+
+```{r}
+bandung <- read.csv("Data/Bandung_Review.csv")
+bandung <- bandung %>%
+  mutate("YELLO" = YELLO) %>% 
+  mutate("Aryaduta" = Aryaduta) %>% 
+  mutate("Trans" = Trans)
+write.csv(bandung, "Data/Bandung_Review.csv", row.names = FALSE)
+```
