@@ -65,6 +65,22 @@ library(leaflet)
     
     Bandung_dest <- read.csv("data/Bandung_destination.csv")
     
+  ## Polylinedecorator plugin for arrows
+    download.file(
+      'https://raw.githubusercontent.com/bbecquet/Leaflet.PolylineDecorator/master/dist/leaflet.polylineDecorator.js',
+      'leaflet.polylineDecorator.js')
+    
+    polylineDecoratorPlugin <- htmlDependency('Leaflet.PolylineDecorator',
+                                              '1.6.0',
+                                              src = normalizePath('.'),
+                                              script = 'leaflet.polylineDecorator.js')
+    
+    registerPlugin <- function(map, plugin) {
+      map$dependencies <- c(map$dependencies, list(plugin))
+      map
+    }
+    
+    
 # Booking Application Data
   
   ## Read Data
