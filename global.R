@@ -9,6 +9,11 @@ library(htmlwidgets)
 library(leaflet)
 library(htmltools)
 library(glue)
+library(TSP)
+library(tibble)
+library(googleway)
+library(googlePolylines)
+library(leaflet)
 
 # Place Recommendation Data
 
@@ -37,7 +42,29 @@ library(glue)
     ) %>% lapply(HTML)
     
 # Travel Recommendation Data
-
+  
+  ## Read Place Destination Data
+    
+    ### Bali
+    
+    Bali_dest <- read.csv("data/Bali_destination.csv")
+    
+    ### Yogyakarta
+    
+    Yogyakarta_dest <- read.csv("data/Yogya_destination.csv")
+    
+    ### Makassar
+    
+    Makassar_dest <- read.csv("data/Makassar_destination.csv")
+    
+    ### Malang
+    
+    Malang_dest <- read.csv("data/Malang_destination.csv")
+    
+    ### Bandung
+    
+    Bandung_dest <- read.csv("data/Bandung_destination.csv")
+    
 # Booking Application Data
   
   ## Read Data

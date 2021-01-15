@@ -37,17 +37,20 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  tabPanel("Travel Recommendation",
                           sidebarLayout(
                               sidebarPanel(
-                                  selectInput("Destination", "Travel Destination", choices = c("Bali", "Yogyakarta","Makassar","Malang","Bandung"),selected = "Bali"),
-                                  ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1), br(),
-                                  actionButton("Ok_TR","Submit")
+                                  selectInput("Destination", "Travel Destination", choices = c("Bali"="Bali_dest", 
+                                                                                               "Yogyakarta"="Yogyakarta_dest",
+                                                                                               "Makassar"="Makassar_dest",
+                                                                                               "Malang"="Malang_dest",
+                                                                                               "Bandung"="Bandung_dest"),selected = "Bali"),
+                                  ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1,value=3), br(),
                               ),
-                              mainPanel()
+                              mainPanel(leafletOutput("Route_map"))
                           )
                  ),
                  
                  # Booking Application Menu
                  tabPanel("Booking Application",
-                          column(4,div(class="panel panel-default",style="height:550px;",
+                          column(4,div(class="panel panel-default",style="height:580px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.agoda.com/en-gb/?cid=-42","Agoda",style = "color: black;")),
@@ -66,7 +69,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Agoda_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:550px;",
+                          column(4,div(class="panel panel-default",style="height:580px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.booking.com/index.en-gb.html","Booking.com",style = "color: black;")),
@@ -84,7 +87,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Booking_desc")),
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:550px;",
+                          column(4,div(class="panel panel-default",style="height:580px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.pegipegi.com/","Pegipegi", style = "color: black;")),
@@ -102,7 +105,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Pegipegi_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:565px;",
+                          column(4,div(class="panel panel-default",style="height:580px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.tiket.com/","Tiket.com",style = "color: black;")),
@@ -120,7 +123,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Tiket_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:565px;",
+                          column(4,div(class="panel panel-default",style="height:580px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.traveloka.com/en-id/","Traveloka",style = "color: black;")),
@@ -138,7 +141,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Traveloka_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:565px;",
+                          column(4,div(class="panel panel-default",style="height:580px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.tripadvisor.com/","Tripadvisor",style = "color: black;")),
@@ -202,10 +205,9 @@ Examples"),
                           column(6,offset = 0,
                                  imageOutput("Indonesia"))),
                           br(),
-                          br(),
+                          hr(),
                           div(style="text-align: center;font-size: 50px;font-family: Helvetica;",
                               "The Creators"),
-                          hr(),
                           br(),
                           column(6,offset=0,
                                  div(class="panel panel-default",
