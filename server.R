@@ -71,7 +71,8 @@ server <- function(input, output) {
         ### Prepare the data for plotting
         City_prep <- reactive({City_data() %>%
             mutate(id_order = order(as.integer(Path()))
-            )})
+            )%>%
+            arrange(id_order)})
         
         ### Plot a map with the data and overlay the optimal path
         
@@ -89,43 +90,9 @@ server <- function(input, output) {
               label= ~as.character(Name)
             )%>%
             addPolylines(lng = ~Long, lat = ~Lat, options = list(need_decorator = TRUE)) %>%
-            addMarkers(lng = ~Long, lat = ~Lat,labelOptions = labelOptions(noHide = T)) %>%
-            registerPlugin(polylineDecoratorPlugin) %>%
-            fitBounds(~min(Long), ~min(Lat), ~max(Long), ~max(Lat)) %>%
-            htmlwidgets::onRender(
-              "function(el,x,data) {
-          var myMap = this;
-          myMap.on('layeradd',
-            function(e) {
-              var lyr = e.layer;
-              if ('need_decorator' in lyr.options) {
-                var dec = L.polylineDecorator(lyr, {
-                  patterns: [
-                    {offset: 0, repeat: '20%', symbol: L.Symbol.arrowHead({pixelSize:15, pathOptions:{stroke:true}})}
-                  ]
-                }).addTo(myMap);
-              }
-            }
-          );
-
-        }")
-        
+            addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T,textOnly =TRUE, textsize = '30px',style = "A",direction = TRUE),label = City_prep()$id_order)
         })
-        
-        observe({
-          
-          selection <- City_prep()
-          
-          n <- leafletProxy("City_map", data = selection)  %>%
-            clearShapes()
-          
-          n <- n %>%
-            addPolylines(lng = ~Long,
-                         lat = ~Lat,
-                         options = list(need_decorator = T)
-            )
-        })
-        
+            
         output$Route_map <- renderLeaflet(City_map())
            
       ## Destination Place selectInput
@@ -250,8 +217,30 @@ server <- function(input, output) {
 
       observeEvent(input$openModal, {
           showModal(
-              modalDialog(title = "Source",
-                          p("test",easyClose = TRUE, footer = NULL ))
+              modalDialog(title = "Sources",
+                          p(h4("Destination City"),hr(),
+                            tags$a(href="https://www.bing.com/search?q=bali&cvid=0b6de456e63d4e7daf0622e263a28168&FORM=ANAB01&PC=U531", "Bali"),br(),
+                            tags$a(href="https://www.bing.com/search?q=yogyakarta&cvid=4a703385b91743d184d32f878307d0a7&FORM=ANAB01&PC=U531","Yogyakarta"),br(),
+                            tags$a(href="https://www.bing.com/search?q=malang&cvid=2ede33e60edc4aa2a4d0345cefd1c577&FORM=ANAB01&PC=U531","Malang"),br(),
+                            tags$a(href="https://www.bing.com/search?q=makassar&cvid=a1e4b62cdcb0461bb0de372a9593b934&FORM=ANAB01&PC=U531","Makassar"),br(),
+                            tags$a(href="https://www.bing.com/search?q=bandung&cvid=26108fcbb90b40b6aebe13d791c5868c&FORM=ANAB01&PC=U531","Bandung"),br(),br(),
+                            h4("Travel Tips"), hr(),
+                            tags$a(href="https://www.tripsavvy.com/etiquette-tips-for-travelers-in-bali-1629371#:~:text=Bali%20locals%20never%20show%20anger%20or%20passion%20openly%2C,be%20touched%20on%20their%20heads%2C%20so%20no%20noogies.","Bali Travel Tips"),br(),
+                            tags$a(href="https://factsofindonesia.com/norms-in-yogyakarta.", "Yogyakarta Travel Tips"),br(),
+                            tags$a(href="https://www.travelinsurance.com.au/articles/etiquette-essentials-when-visiting-indonesia/", "Makassar Travel Tips"),br(),
+                            tags$a(href="https://www.lifeofbrit.com/20-travel-tips-for-indonesia/", "Malang Travel Tips"),br(),
+                            tags$a(href="https://factsofindonesia.com/things-to-avoid-in-bandung", "Bandung Travel Tips"),br(),br(),
+                            h4("Travel Destination Place"),hr(),
+                            tags$a(href="https://www.thebrokebackpacker.com/best-places-to-visit-in-bali/", "Bali Travel Destination"),
+                            tags$a(href="https://twomonkeystravelgroup.com/7-awesome-things-to-do-in-yogyakarta-indonesia/","Yogyakarta Travel Destination"),br(),
+                            tags$a(href="http://www.travelingwhere.com/2015/05/10-best-tourist-destinations-in-makassar.html", "Makassar Travel Destination"),br(),
+                            tags$a(href="http://www.travelingwhere.com/2015/05/10-popular-tourist-destinations-in.html", "Malang Travel Destination"),br(),
+                            tags$a(href="https://captureindonesia.com/java/west-java/bandung-interesting-places/", "Bandung Travel Destination"),br(),br(),
+                            h4("Other"),hr(),
+                            tags$a(href="https://www.tripadvisor.com", "Travel Destination Review"),br(),
+                            tags$a(href="https://www.booking.com/hotel/id/", "Hotel Destination Review"),br(),
+                            tags$a(href="https://play.google.com/store/search?q=travel&c=apps","Booking Applications"),
+                            easyClose = TRUE, footer = NULL ))
           )
       })
 }

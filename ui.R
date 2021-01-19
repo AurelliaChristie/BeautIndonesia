@@ -52,7 +52,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  
                  # Booking Application Menu
                  tabPanel("Booking Application",
-                          column(4,div(class="panel panel-default",style="height:580px;",
+                          column(4,div(class="panel panel-default",style="height:650px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.agoda.com/en-gb/?cid=-42","Agoda",style = "color: black;")),
@@ -71,7 +71,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Agoda_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:580px;",
+                          column(4,div(class="panel panel-default",style="height:650px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.booking.com/index.en-gb.html","Booking.com",style = "color: black;")),
@@ -89,7 +89,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Booking_desc")),
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:580px;",
+                          column(4,div(class="panel panel-default",style="height:650px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.pegipegi.com/","Pegipegi", style = "color: black;")),
@@ -107,7 +107,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Pegipegi_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:580px;",
+                          column(4,div(class="panel panel-default",style="height:700px;",
                                        div(class="panel-body",  
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.tiket.com/","Tiket.com",style = "color: black;")),
@@ -125,7 +125,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Tiket_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:580px;",
+                          column(4,div(class="panel panel-default",style="height:700px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.traveloka.com/en-id/","Traveloka",style = "color: black;")),
@@ -143,7 +143,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                            div(style="text-align:justify;",textOutput("Traveloka_desc"))
                                            ))
                           ),
-                          column(4,div(class="panel panel-default",style="height:580px;",
+                          column(4,div(class="panel panel-default",style="height:700px;",
                                        div(class="panel-body",
                                            div( align = "center", 
                                                 h3(tags$a(href="https://www.tripadvisor.com/","Tripadvisor",style = "color: black;")),
@@ -175,33 +175,18 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                           hr(),
                           br(),
                         fluidRow(column(5,offset = 1,
-                                 "Arguments
-expr	
-An expression that returns a list.
-
-env	
-The environment in which to evaluate expr.
-
-quoted	
-Is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
-
-deleteFile	
-Should the file in func()$src be deleted after it is sent to the client browser? Generally speaking, if the image is a temp file generated within func, then this should be TRUE; if the image is not a temp file, this should be FALSE. (For backward compatibility reasons, if this argument is missing, a warning will be emitted, and if the file is in the temp directory it will be deleted. In the future, this warning will become an error.)
-
-outputArgs	
-A list of arguments to be passed through to the implicit call to imageOutput() when renderImage is used in an interactive R Markdown document.
-
-Details
-The expression expr must return a list containing the attributes for the img object on the client web page. For the image to display, properly, the list must have at least one entry, src, which is the path to the image file. It may also useful to have a contentType entry specifying the MIME type of the image. If one is not provided, renderImage will try to autodetect the type, based on the file extension.
-
-Other elements such as width, height, class, and alt, can also be added to the list, and they will be used as attributes in the img object.
-
-The corresponding HTML output tag should be div or img and have the CSS class name shiny-image-output.
-
-See Also
-For more details on how the images are generated, and how to control the output, see plotPNG().
-
-Examples"),
+                                 div(style="text-align:justify;","Travel Planner is a appliaction for tourists who want to plan their trip to Indonesia. 
+                                 In this app, we provide you with the 5 most search rating Travel Places from Google trends in Indonesia,
+                                 these places are very famous tourist places among Indonesian and we will try it to make it a global sensations!",
+                                 br(),br(),
+                                 "If you are having a little doubt to travel because you do not know about the place, the place culture, and the clickbait of the media.
+                                 Don't worry, because those are the reason why this app is made :D", br(),br(),
+                                 "In this application you can find 25 amazing tourist places and 15 great hotels from the 5 most search rating in Google that will take you to an dream places that you want to visit.
+                                 Moreover, we also provide the route optimization, so you will effectively spend your time enjoying the places, not stuck in the car for a long time.
+                                 There are also some reviews from other tourists hat will give you a big picture what to expect from those places.
+                                 Lastlt, there are also 6 top travel applications that you can use to book your hotel or admission ticket of the places.", br(),br(),
+                                 "That's all for this application, feel free to give us feedback by reaching us from our LinkedIn, come to Indonesia ASAP, we 100% sure you will not regret itt! See yaa :D
+                                 ")),
                           br(),
                           br(),
                           column(6,offset = 0,
@@ -221,7 +206,11 @@ Examples"),
                                               tags$a(href="https://www.linkedin.com/in/aurellia-christie-059892179/",icon("linkedin"),style='padding:4px; font-size:25px'),
                                               tags$a(href="https://github.com/AurelliaChristie", icon("github"),style='padding:4px; font-size:25px')
                                               ),
-                                          div(style="text-align:center;","Enter your profile")
+                                          div(style="text-align:center;","Hi! I'm Aurellia Christie, at the moment I'm a college students major in mathematics, I'm also interested in data science. 
+                                                                          Currently I'm also doing my internship in Supertype and a part-time tutor as Mathematics tutor at Tutor aja.
+                                                                          Travelling is also my hobby to relieve stress and gateaway from my tight schedule.
+                                                                          We can talk more about data science, mathematics, and obviously TRAVELLING, so don't forget too reach me through LinkedIn, see ya! :)"
+                                                                          )
                                         ))),
                                  
                           column(6,offset = 0,
@@ -234,7 +223,10 @@ Examples"),
                                             tags$a(href="https://www.linkedin.com/in/geraldbryan/",icon("linkedin"),style='padding:4px; font-size:25px'),
                                             tags$a(href="https://github.com/geraldbryan", icon("github"),style='padding:4px; font-size:25px')
                                         ),
-                                        div(style="text-align:center;","Enter your profile")
+                                        div(style="text-align:center;","Hi! I'm Gerald Bryan, like Aurellia I'm still a college students major in mathematics, also now I'm doing my internship at Supertype.
+                                            I'm interest in data science and data analytics specially in data story telling. 
+                                            And I'M ALSO A TRAVEL ENTHUSIAST! If you have similiar interest with me feel free to connect with me in LinkedIn, 
+                                            if don't, you can still connect with me because we won't know in the future maybe we will need each other:)")
                                       )))
                  )
 )

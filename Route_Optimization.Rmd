@@ -65,10 +65,11 @@ path <- names(route)
 
 ```{r}
 # Prepare the data for plotting
-Bali <- Bali %>% 
+Bali <- Bali %>%
     mutate(
         id_order = order(as.integer(path))
-    )
+    ) %>%
+  arrange(id_order)
 
 ```
 
@@ -87,7 +88,7 @@ Bali %>%
         label= ~as.character(Name)
     )%>%
 addPolylines(~Long, ~Lat) %>%
-addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T)) 
+addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T,textOnly =TRUE, textsize = '30px',style = "A",direction = TRUE),label = Bali$id_order) 
 ```
 
 # Yogyakarta
