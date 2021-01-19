@@ -36,6 +36,7 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  # Travel Recommendation Menu
                  tabPanel("Travel Recommendation",
                           sidebarLayout(
+                              ## Sidebar
                               sidebarPanel(
                                   selectInput("Destination", "Travel Destination", choices = c("Bali"="Bali_dest", 
                                                                                                "Yogyakarta"="Yogyakarta_dest",
@@ -45,8 +46,44 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                   ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1,value=3), br(),
                                   actionButton("Submit","Submit")
                               ),
-                              mainPanel(leafletOutput("Route_map"),
-                                        uiOutput("Place"))
+                              ## Main Panel
+                              mainPanel(
+                                ### Map
+                                leafletOutput("Route_map"),
+                                ### Description Title        
+                                uiOutput("Desc_title"),
+                                br(),
+                                uiOutput("Place"),
+                                ### Description Content
+                                fluidRow(
+                                  div(style="text-align: center;",
+                                    column(6, offset = 0,
+                                            HTML("<div style='height:170px; width:350px;'>"), #remove unwanted white space
+                                            imageOutput("place_image"),
+                                            HTML("</div>"),
+                                            textOutput("place_desc")),
+                                      
+                                    column(6,offset = 0,
+                                            uiOutput("tips_title"),
+                                            div(style="font-size:10px;",br()),
+                                            tableOutput("tips_content"))
+                                    )
+                                  ),
+                                ### Reviews
+                                fluidRow(
+                                  div(style="text-align: center;",
+                                    column(6, offset = 0,
+                                           br(),
+                                           uiOutput("rev_title"),
+                                           wordcloud2Output("rev_words")),
+                                    
+                                    column(6,offset = 0,
+                                           br(),
+                                           uiOutput("sent_title"),
+                                           plotOutput("sent_cont"))
+                                  )
+                                )
+                              )
                           )
                  ),
                  

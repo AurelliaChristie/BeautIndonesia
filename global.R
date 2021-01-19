@@ -14,6 +14,14 @@ library(tibble)
 library(googleway)
 library(googlePolylines)
 library(leaflet)
+library(knitr)
+library(kableExtra)
+library(jsonlite)
+library(tm)
+library(SnowballC)
+library(syuzhet)
+library(wordcloud2)
+library(ggplot2)
 
 # Place Recommendation Data
 
@@ -47,30 +55,58 @@ library(leaflet)
     
     ### Bali
     
-    Bali_dest <- read.csv("data/Bali_destination.csv")
+    Bali_dest <- read.csv("Data/Bali_destination.csv")
     
     ### Yogyakarta
     
-    Yogyakarta_dest <- read.csv("data/Yogya_destination.csv")
+    Yogyakarta_dest <- read.csv("Data/Yogya_destination.csv")
     
     ### Makassar
     
-    Makassar_dest <- read.csv("data/Makassar_destination.csv")
+    Makassar_dest <- read.csv("Data/Makassar_destination.csv")
     
     ### Malang
     
-    Malang_dest <- read.csv("data/Malang_destination.csv")
+    Malang_dest <- read.csv("Data/Malang_destination.csv")
     
     ### Bandung
     
-    Bandung_dest <- read.csv("data/Bandung_destination.csv")
+    Bandung_dest <- read.csv("Data/Bandung_destination.csv")
+    
+    ## Travel Tips Data
+    travel_tips <- read.csv("Data/Travel_Tips.csv")
+    
+    ## Read Place Destination Review Data
+    
+      ### Bali
+      
+      Bali_rev <- read.csv("Data/Bali_Review.csv")
+      
+      ### Yogyakarta
+      
+      Yogyakarta_rev <- read.csv("Data/Yogyakarta_Review.csv")
+      
+      ### Makassar
+      
+      Makassar_rev <- read.csv("Data/Makassar_Review.csv")
+      
+      ### Malang
+      
+      Malang_rev <- read.csv("Data/Malang_Review.csv")
+      
+      ### Bandung
+      
+      Bandung_rev <- read.csv("Data/Bandung_Review.csv")
+    
+    ## Create function to transform some special characters ("@", "/", etc.) to empty space
+    trans <- content_transformer(function(x, pattern){
+      gsub(pattern, " ", x)
+    })
 
 # Booking Application Data
   
   ## Read Data
   Booking_Apps <- read.csv("Data/Booking_Apps.csv")
-  
-# About Us Data
 
 
 # Call ui & server
