@@ -73,21 +73,6 @@ library(ggplot2)
     
     Bandung_dest <- read.csv("Data/Bandung_destination.csv")
     
-  ## Polylinedecorator plugin for arrows
-    download.file(
-      'https://raw.githubusercontent.com/bbecquet/Leaflet.PolylineDecorator/master/dist/leaflet.polylineDecorator.js',
-      'leaflet.polylineDecorator.js')
-    
-    polylineDecoratorPlugin <- htmlDependency('Leaflet.PolylineDecorator',
-                                              '1.6.0',
-                                              src = normalizePath('.'),
-                                              script = 'leaflet.polylineDecorator.js')
-    
-    registerPlugin <- function(map, plugin) {
-      map$dependencies <- c(map$dependencies, list(plugin))
-      map
-    }
-    
     ## Travel Tips Data
     travel_tips <- read.csv("Data/Travel_Tips.csv")
     
@@ -117,13 +102,11 @@ library(ggplot2)
     trans <- content_transformer(function(x, pattern){
       gsub(pattern, " ", x)
     })
-      
+
 # Booking Application Data
   
   ## Read Data
   Booking_Apps <- read.csv("Data/Booking_Apps.csv")
-  
-# About Us Data
 
 
 # Call ui & server
