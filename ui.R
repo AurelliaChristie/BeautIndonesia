@@ -74,12 +74,12 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                   div(style="text-align: center;",
                                     column(6, offset = 0,
                                            br(),
-                                           uiOutput("rev_title"),
+                                           uiOutput("rev_title"), br(),
                                            wordcloud2Output("rev_words")),
                                     
                                     column(6,offset = 0,
                                            br(),
-                                           uiOutput("sent_title"),
+                                           uiOutput("sent_title"), br(),
                                            plotOutput("sent_cont"))
                                   )
                                 )
@@ -212,17 +212,17 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                           hr(),
                           br(),
                         fluidRow(column(5,offset = 1,
-                                 div(style="text-align:justify;","Travel Planner is an application for tourists who want to plan their trip to Indonesia. 
+                                 div(style="text-align:justify;","Travel Planner is designed for tourists who want to plan their trip to Indonesia. 
                                  In this app, we provide you the 5 most popular places in Indonesia based on interest over time from Google Trends.
-                                 These places are very famous tourist places among Indonesian and we will try to make it a global sensations!",
+                                 These places are the favourite tourist places among Indonesian and we will try to make them global sensations!",
                                  br(),br(),
-                                 "If you are having a little doubt to travel because you do not know about the place, the place culture, and the clickbait of the media.
-                                 Don't worry, because those are the reason why this app is made :D", br(),br(),
-                                 "In this application you can find 25 amazing tourist places and 15 great hotels from the 5 most search rating in Google that will take you to an dream places that you want to visit.
+                                 "If you are having a little doubt to travel because you do not know about the place, the culture, and the clickbait of the media,
+                                 don't worry! Those are the reasons why this app is made.", br(),br(),
+                                 "You can find 25 amazing tourist places and 15 great hotels that are located in the 5 most popular places in Indonesia, that will give you an amazing travel experience.
                                  Moreover, we also provide the route optimization, so you will effectively spend your time enjoying the places, not stuck in the car for a long time.
-                                 There are also some reviews from other tourists hat will give you a big picture what to expect from those places.
-                                 Lastlt, there are also 6 top travel applications that you can use to book your hotel or admission ticket of the places.", br(),br(),
-                                 "That's all for this application, feel free to give us feedback by reaching us from our LinkedIn, come to Indonesia ASAP, we 100% sure you will not regret itt! See yaa :D
+                                 There are also some reviews from other tourists that will give you a big picture what to expect from those places.
+                                 Last, there are also 6 top travel booking applications that you can use to book your hotel and/or tickets to the travel destinations.", br(),br(),
+                                 "So, what are you waiting for? Plan your next trip to Indonesia as soon as possible & we guarantee that you won't regret it! Also, feel free to give us feedback by reaching us from our LinkedIn. See you in Indonesia! 
                                  ")),
                           br(),
                           br(),
@@ -243,10 +243,9 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                               tags$a(href="https://www.linkedin.com/in/aurellia-christie-059892179/",icon("linkedin"),style='padding:4px; font-size:25px'),
                                               tags$a(href="https://github.com/AurelliaChristie", icon("github"),style='padding:4px; font-size:25px')
                                               ),
-                                          div(style="text-align:center;","Hi! I'm Aurellia Christie, at the moment I'm a college students major in mathematics, I'm also interested in data science. 
-                                                                          Currently I'm also doing my internship in Supertype and a part-time tutor as Mathematics tutor at Tutor aja.
-                                                                          Travelling is also my hobby to relieve stress and gateaway from my tight schedule.
-                                                                          We can talk more about data science, mathematics, and obviously TRAVELLING, so don't forget too reach me through LinkedIn, see ya! :)"
+                                          div(style="text-align:center;","Hi! I'm Aurellia Christie, a college student majoring in Business Mathematics that have a passion in data science. 
+                                                                          Travelling is my hobby to relieve stress and gateaway from my tight schedule. By making this application, I hope I'm succeed in making you guys love my hobby too!
+                                                                          Let's connect through LinkedIn so we can talk more about data science, mathematics, and obviously TRAVELLING!"
                                                                           )
                                         ))),
                                  
@@ -260,10 +259,10 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                             tags$a(href="https://www.linkedin.com/in/geraldbryan/",icon("linkedin"),style='padding:4px; font-size:25px'),
                                             tags$a(href="https://github.com/geraldbryan", icon("github"),style='padding:4px; font-size:25px')
                                         ),
-                                        div(style="text-align:center;","Hi! I'm Gerald Bryan, like Aurellia I'm still a college students major in mathematics, also now I'm doing my internship at Supertype.
-                                            I'm interest in data science and data analytics specially in data story telling. 
-                                            And I'M ALSO A TRAVEL ENTHUSIAST! If you have similiar interest with me feel free to connect with me in LinkedIn, 
-                                            if don't, you can still connect with me because we won't know in the future maybe we will need each other:)")
+                                        div(style="text-align:center;","Hi! I'm Gerald Bryan, like Aurellia, I'm also a college student majoring in Business Mathematics.
+                                            I have interests in data science and data analytics, especially in data story telling. 
+                                            I'm also a TRAVEL ENTHUSIAST! If you have similiar interests with me, feel free to connect with me through LinkedIn so we can talk about them!
+                                            If you don't, let's still connect so we can share about other things!")
                                       )))
                  )
 )
