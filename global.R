@@ -22,6 +22,7 @@ library(SnowballC)
 library(syuzhet)
 library(wordcloud2)
 library(ggplot2)
+library(textstem)
 
 # Place Recommendation Data
 

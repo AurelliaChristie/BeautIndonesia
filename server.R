@@ -174,7 +174,7 @@ server <- function(input, output) {
           corp7 <- reactive(tm_map(corp6(), removeWords, stopwords("english")))
           
           #### Apply stemming (eg. "doing" -> "do")
-          corp8 <- reactive(tm_map(corp7(), stemDocument))
+          corp8 <- reactive(tm_map(corp7(), lemmatize_words))
           
           #### Remove extra white space
           corp_fin <- reactive(tm_map(corp8(), stripWhitespace))

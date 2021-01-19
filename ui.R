@@ -212,9 +212,9 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                           hr(),
                           br(),
                         fluidRow(column(5,offset = 1,
-                                 div(style="text-align:justify;","Travel Planner is a appliaction for tourists who want to plan their trip to Indonesia. 
-                                 In this app, we provide you with the 5 most search rating Travel Places from Google trends in Indonesia,
-                                 these places are very famous tourist places among Indonesian and we will try it to make it a global sensations!",
+                                 div(style="text-align:justify;","Travel Planner is an application for tourists who want to plan their trip to Indonesia. 
+                                 In this app, we provide you the 5 most popular places in Indonesia based on interest over time from Google Trends.
+                                 These places are very famous tourist places among Indonesian and we will try to make it a global sensations!",
                                  br(),br(),
                                  "If you are having a little doubt to travel because you do not know about the place, the place culture, and the clickbait of the media.
                                  Don't worry, because those are the reason why this app is made :D", br(),br(),
