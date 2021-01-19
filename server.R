@@ -108,7 +108,7 @@ server <- function(input, output) {
         
         ### Destination Place Image
         path <- eventReactive(input$Submit, {
-          paste0("www/Place_Image/",gsub("_dest","",input$Destination), "/",City_read()[Stars_max7(),1],".jpg")
+          paste0("www/Place_Image/",gsub("_dest","",input$Destination), "/",input$Dest_Place,".jpg")
         })
         output$place_image <- renderImage({list(src = path(),
                                                 contentType = "image/jpg",width=250, height=150)
@@ -189,7 +189,7 @@ server <- function(input, output) {
       
         output$rev_words <- renderWordcloud2({
           set.seed(100)
-          wordcloud2(df(), shape = "circle", size = 0.5)
+          wordcloud2(df(), shape = "circle", size = 1)
         })
         
         ### How They Felt About The Destination
