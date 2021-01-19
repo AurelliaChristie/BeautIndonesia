@@ -828,7 +828,7 @@ saungangklung_review_ful <- rbind(saungangklung_review_ful, data.frame(saungangk
 
 ciater_review_ful <- data.frame()
 
-for (i in seq(5,495,5)) {
+for (i in seq(5,500,5)) {
 link <- paste0("https://www.tripadvisor.com/Attraction_Review-g297704-d649064-Reviews-or",i,"-Ciater_Hot_Spring-Bandung_West_Java_Java.html#REVIEWS")
 pages <- read_html(link)
 
@@ -836,7 +836,7 @@ ciater_review <- pages %>%
       html_nodes("q.IRsGHoPm") %>%
       html_text()
 
-ciater_review_ful <- rbind(saungangklung_review_ful, data.frame(saungangklung_review))
+ciater_review_ful <- rbind(ciater_review_ful, data.frame(ciater_review))
 }
 
 ciater_review_ful <- data.frame(ciater_review_ful[1:500,1])

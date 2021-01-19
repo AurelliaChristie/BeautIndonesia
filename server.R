@@ -107,15 +107,15 @@ server <- function(input, output) {
         })
         
         ### Destination Place Image
-        path <- eventReactive(input$Submit, {
+        path <- reactive({
           paste0("www/Place_Image/",gsub("_dest","",input$Destination), "/",input$Dest_Place,".jpg")
         })
         output$place_image <- renderImage({list(src = path(),
                                                 contentType = "image/jpg",width=250, height=150)
-        })
+        }) 
         
         ### Destination Place Description
-        desc <- eventReactive(input$Submit, {
+        desc <- reactive({
           City_read()[City_read()$Name == input$Dest_Place, "Description"]
         })
         output$place_desc <- renderText({desc()})
@@ -144,14 +144,14 @@ server <- function(input, output) {
         output$rev_title <- renderUI({rev_tit()})
           
           #### Input Data
-          rev_read <- eventReactive(input$Submit, {
+          rev_read <- eventReactive(input$Submit,{
             {get(gsub("_dest","_rev",input$Destination))}
           })
           pl <- reactive(word(input$Dest_Place,1))
           dpl <- reactive(rev_read() %>% select(pl()) %>% as.character())
           
           #### Data Preparation for Word Cloud
-        
+          
           #### Convert review to corpus vector
           corp <- reactive(VCorpus(VectorSource(dpl())))
           

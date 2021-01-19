@@ -58,9 +58,10 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                 fluidRow(
                                   div(style="text-align: center;",
                                     column(6, offset = 0,
+                                           tags$div(align="center",
                                             HTML("<div style='height:170px; width:350px;'>"), #remove unwanted white space
-                                            imageOutput("place_image"),
-                                            HTML("</div>"),
+                                            imageOutput("place_image",inline=FALSE),
+                                            HTML("</div>")),
                                             textOutput("place_desc")),
                                       
                                     column(6,offset = 0,
