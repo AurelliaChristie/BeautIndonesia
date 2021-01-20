@@ -40,9 +40,9 @@ server <- function(input, output) {
       ## Route Optimization
         
         ### Read Input Data
-        City_read <- eventReactive(input$Submit,{get(input$Destination)}) #to call dataframe use 'get()' function
+        City_read <- reactive({get(input$Destination)}) #to call dataframe use 'get()' function
         
-        Stars <- eventReactive(input$Submit,{as.numeric(input$Star)+4})
+        Stars <- reactive({as.numeric(input$Star)+4})
         
         Stars_max7 <- reactive({ifelse(Stars() <= 7, 7,Stars())})
         
@@ -93,24 +93,21 @@ server <- function(input, output) {
       ## Destination Descriptions
         
         ### Title
-        desc_title <- eventReactive(input$Submit, {
+        desc_title <- reactive({
           div(style="text-align: center;font-size: 30px;font-family: Helvetica;",
               hr(),"About The Destinations")
         })
         output$Desc_title <- renderUI({desc_title()})
         
         ### Destination Place selectInput
-        choices <- eventReactive(input$Submit, {City_read()[c(1:5,Stars_max7()),1]})
-        selected <- eventReactive(input$Submit, {City_read()[Stars_max7(),1]})
+        choices <- reactive({City_read()[c(1:5,Stars_max7()),1]})
+        selected <- reactive({City_read()[Stars_max7(),1]})
         output$Place <- renderUI({
           selectInput("Dest_Place", "Destination Place", choices = choices(), selected = selected())
         })
         
-        Button <- eventReactive(input$Submit,{actionButton("Ok","Ok")}) 
-        output$Ok <- renderUI(Button())
-        
         ### Destination Place Image
-        path <- eventReactive(input$Ok,{
+        path <- reactive({
           paste0("www/Place_Image/",gsub("_dest","",input$Destination), "/",input$Dest_Place,".jpg")
         })
         
@@ -119,18 +116,18 @@ server <- function(input, output) {
         }) 
         
         ### Destination Place Description
-        desc <- eventReactive(input$Ok,{
+        desc <- reactive({
           City_read()[City_read()$Name == input$Dest_Place, "Description"]
         })
         output$place_desc <- renderText({desc()})
         
         ### Tips
-        tips_tit <- eventReactive(input$Ok, {
+        tips_tit <- reactive({
           div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", paste0(gsub("_dest","",input$Destination)," Travel Tips"),br())
         })
         output$tips_title <- renderUI({tips_tit()})
         
-        tips_con <- eventReactive(input$Ok, {
+        tips_con <- reactive({
           travel_tips %>% select(input$Destination)
         })
         tips_cont <- reactive(
@@ -142,16 +139,16 @@ server <- function(input, output) {
       ## Reviews
         
         ### What They Said About The Destinations
-        rev_tit <- eventReactive(input$Ok, {
+        rev_tit <- reactive({
           div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", "What They Said About The Destination")
         })
         output$rev_title <- renderUI({rev_tit()})
           
           #### Input Data
-          rev_read <- eventReactive(input$Ok,{
+          rev_read <- reactive({
             {get(gsub("_dest","_rev",input$Destination))}
           })
-          pl <- eventReactive(input$Ok, {word(input$Dest_Place,1)})
+          pl <- reactive({word(input$Dest_Place,1)})
           dpl <- reactive(rev_read() %>% select(pl()) %>% as.character())
           
           #### Data Preparation for Word Cloud
@@ -197,7 +194,7 @@ server <- function(input, output) {
         })
         
         ### How They Felt About The Destination
-        sent_tit <- eventReactive(input$Ok, {
+        sent_tit <- reactive({
           div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", "How They Felt About The Destination")
         })
         output$sent_title <- renderUI({sent_tit()})

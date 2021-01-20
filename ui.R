@@ -44,7 +44,6 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                                                                                                "Malang"="Malang_dest",
                                                                                                "Bandung"="Bandung_dest"),selected = "Bali"),
                                   ratingInput("Star", label="Hotel Star", dataStart = 0,dataStop=5, dataStep = 1,value=3), br(),
-                                  actionButton("Submit","Submit")
                               ),
                               ## Main Panel
                               mainPanel(
@@ -54,7 +53,6 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                                 uiOutput("Desc_title"),
                                 br(),
                                 uiOutput("Place"),
-                                uiOutput("Ok"),
                                 br(),
                                 ### Description Content
                                 fluidRow(
