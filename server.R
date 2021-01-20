@@ -106,27 +106,31 @@ server <- function(input, output) {
           selectInput("Dest_Place", "Destination Place", choices = choices(), selected = selected())
         })
         
+        Button <- eventReactive(input$Submit,{actionButton("Ok","Ok")}) 
+        output$Ok <- renderUI(Button())
+        
         ### Destination Place Image
-        path <- reactive({
+        path <- eventReactive(input$Ok,{
           paste0("www/Place_Image/",gsub("_dest","",input$Destination), "/",input$Dest_Place,".jpg")
         })
+        
         output$place_image <- renderImage({list(src = path(),
-                                                contentType = "image/jpg",width=250, height=150)
+                                                contentType = "image/jpg",width=250, height=150,alt=" ")
         }) 
         
         ### Destination Place Description
-        desc <- reactive({
+        desc <- eventReactive(input$Ok,{
           City_read()[City_read()$Name == input$Dest_Place, "Description"]
         })
         output$place_desc <- renderText({desc()})
         
         ### Tips
-        tips_tit <- eventReactive(input$Submit, {
+        tips_tit <- eventReactive(input$Ok, {
           div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", paste0(gsub("_dest","",input$Destination)," Travel Tips"),br())
         })
         output$tips_title <- renderUI({tips_tit()})
         
-        tips_con <- eventReactive(input$Submit, {
+        tips_con <- eventReactive(input$Ok, {
           travel_tips %>% select(input$Destination)
         })
         tips_cont <- reactive(
@@ -138,16 +142,16 @@ server <- function(input, output) {
       ## Reviews
         
         ### What They Said About The Destinations
-        rev_tit <- eventReactive(input$Submit, {
+        rev_tit <- eventReactive(input$Ok, {
           div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", "What They Said About The Destination")
         })
         output$rev_title <- renderUI({rev_tit()})
           
           #### Input Data
-          rev_read <- eventReactive(input$Submit,{
+          rev_read <- eventReactive(input$Ok,{
             {get(gsub("_dest","_rev",input$Destination))}
           })
-          pl <- reactive(word(input$Dest_Place,1))
+          pl <- eventReactive(input$Ok, {word(input$Dest_Place,1)})
           dpl <- reactive(rev_read() %>% select(pl()) %>% as.character())
           
           #### Data Preparation for Word Cloud
@@ -193,7 +197,7 @@ server <- function(input, output) {
         })
         
         ### How They Felt About The Destination
-        sent_tit <- eventReactive(input$Submit, {
+        sent_tit <- eventReactive(input$Ok, {
           div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", "How They Felt About The Destination")
         })
         output$sent_title <- renderUI({sent_tit()})

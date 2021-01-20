@@ -1,4 +1,4 @@
-ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
+ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = TRUE,
                  
                  footer = includeHTML("HTML/Footer.html"),
                  
@@ -54,6 +54,8 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                                 uiOutput("Desc_title"),
                                 br(),
                                 uiOutput("Place"),
+                                uiOutput("Ok"),
+                                br(),
                                 ### Description Content
                                 fluidRow(
                                   div(style="text-align: center;",
@@ -204,16 +206,16 @@ ui <- navbarPage("Travel Planner", position = "static-top", collapsible = TRUE,
                  # About Us Menu
                  tabPanel("About Us",
                         div(style="text-align: center;font-size: 70px;font-family: Helvetica;",
-                              "Travel Planner"),
+                              "Travelling Indonesia"),
                           div(style="text-align: center;",actionLink("openModal",
                                      icon = icon("globe"),
-                                     label = "Sources",
+                                     label = "Data Sources",
                                      class = "dropdown",
                                      style='padding:4px; font-size:20px')),
                           hr(),
                           br(),
                         fluidRow(column(5,offset = 1,
-                                 div(style="text-align:justify;","Travel Planner is designed for tourists who want to plan their trip to Indonesia. 
+                                 div(style="text-align:justify;","Travelling Indonesia is designed for tourists who want to plan their trip to Indonesia without any background knowledge about it. 
                                  In this app, we provide you the 5 most popular places in Indonesia based on interest over time from Google Trends.
                                  These places are the favourite tourist places among Indonesian and we will try to make them global sensations!",
                                  br(),br(),
