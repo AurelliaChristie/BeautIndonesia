@@ -34,7 +34,7 @@ Want to know more about the destinations? Choose one of the destinations and rea
 ### 3. Reviews
 We know that nothing can make you be less worry other than knowing how people feel when they went to the destinations we suggested. So, we made a word cloud and sentiment analysis from the people's reviews. 
 
-![](www/About_us/WordCloud.jpg)
+![](./www/About_us/WordCloud.jpg)
 
 In the word cloud, the size of the words implies how many times they were written in the reviews. Of course you can make your own judgement about the destinations from the words you see in this section. In addition, we also do sentiment analysis of the reviews to see what feelings they showed from the reviews they wrote. We don't favoring any parties, so we guarantee that you see honest reviews that we scraped from TripAdvisor.  
   
