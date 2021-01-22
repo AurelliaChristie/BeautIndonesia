@@ -23,7 +23,7 @@ In order to bring the trip recommendations for you, we have found out which plac
 
 ![](./www/About_us/InterestOverTime.JPG)
 
-In this section, we provide the description about the places and the distribution map of the interest over time of places in Indonesia. Of course, to assure you to plan your trip to Indonesia, we provide some testimonials about Indonesia in the "Why Indonesia?" section.
+In this section, we also provide the description about the places and the distribution map of the interest over time of places in Indonesia. Of course, to assure you to plan your trip to Indonesia, we provide some testimonials about Indonesia in the "Why Indonesia?" section.
 
 <a name="Travel"></a>
 ## Trip Recommendations
