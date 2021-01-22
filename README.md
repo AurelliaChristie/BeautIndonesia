@@ -19,7 +19,11 @@ We will explain more about the application below, but if you want to see it dire
 
 <a name="Place"></a>
 ## Popular Places
-In order to bring the trip recommendations for you, we have found out which places across Indonesia that are mostly searched through out Google. We gathered *interest over time* data of places in Indonesia from Google Trends and took 5 most popular places based on it as the recommendations for you. In this section, we provide the description about the places and the distribution map of the interest over time of places in Indonesia. Of course, to assure you to plan your trip to Indonesia, we provide some testimonials about Indonesia in the "Why Indonesia?" section.
+In order to bring the trip recommendations for you, we have found out which places across Indonesia that are mostly searched through out Google. We gathered *interest over time* data of places in Indonesia from Google Trends and took 5 most popular places based on it as the recommendations for you. 
+
+![](./www/About_us/InterestOverTime.JPG)
+
+In this section, we provide the description about the places and the distribution map of the interest over time of places in Indonesia. Of course, to assure you to plan your trip to Indonesia, we provide some testimonials about Indonesia in the "Why Indonesia?" section.
 
 <a name="Travel"></a>
 ## Trip Recommendations
