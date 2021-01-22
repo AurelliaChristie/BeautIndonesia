@@ -252,7 +252,7 @@ server <- function(input, output) {
       })
 
       ## Tiket
-      output$Tiket <- renderImage({list(src = "www/Logo/Tiketcom.jpg",
+      output$Tiket <- renderImage({list(src = "www/Logo/tiketcom.jpg",
                                             contentType = "image/jpg",width=150, height=150,
                                             alt = "Face")
       })

@@ -1,9 +1,9 @@
-ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = TRUE,
+ui <- navbarPage("BeautIndonesia", position = "static-top", collapsible = TRUE,
                  
                  footer = includeHTML("HTML/Footer.html"),
                  
-                 # Place Recommendation Menu
-                 tabPanel("Place Recommendation",
+                 # Popular Places
+                 tabPanel("Popular Places",
                           includeHTML("HTML/Place_Carousel.html"),
                           tags$head(
                             tags$link(rel = "stylesheet", 
@@ -33,8 +33,8 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                                  )
                  ),
                  
-                 # Travel Recommendation Menu
-                 tabPanel("Travel Recommendation",
+                 # Trip Recommendation Menu
+                 tabPanel("Trip Recommendation",
                           sidebarLayout(
                               ## Sidebar
                               sidebarPanel(
@@ -88,8 +88,8 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                           )
                  ),
                  
-                 # Booking Application Menu
-                 tabPanel("Booking Application",
+                 # Booking Applications Menu
+                 tabPanel("Booking Applications",
                           column(4,div(class="panel panel-default",style="height:650px;",
                                        div(class="panel-body",
                                            div( align = "center", 
@@ -204,7 +204,7 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                  # About Us Menu
                  tabPanel("About Us",
                         div(style="text-align: center;font-size: 70px;font-family: Helvetica;",
-                              "Travelling Indonesia"),
+                              "BeautIndonesia"),
                           div(style="text-align: center;",actionLink("openModal",
                                      icon = icon("globe"),
                                      label = "Data Sources",
@@ -213,7 +213,7 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                           hr(),
                           br(),
                         fluidRow(column(5,offset = 1,
-                                 div(style="text-align:justify;","Travelling Indonesia is designed for tourists who want to plan their trip to Indonesia without any background knowledge about it. 
+                                 div(style="text-align:justify;","BeautIndonesia is designed for tourists who want to plan their trip to Indonesia without any background knowledge about it. 
                                  In this app, we provide you the 5 most popular places in Indonesia based on interest over time from Google Trends.
                                  These places are the favourite tourist places among Indonesian and we will try to make them global sensations!",
                                  br(),br(),
@@ -223,7 +223,7 @@ ui <- navbarPage("Travelling Indonesia", position = "static-top", collapsible = 
                                  Moreover, we also provide the route optimization, so you will effectively spend your time enjoying the places, not stuck in the car for a long time.
                                  There are also some reviews from other tourists that will give you a big picture what to expect from those places.
                                  Last, there are also 6 top travel booking applications that you can use to book your hotel and/or tickets to the travel destinations.", br(),br(),
-                                 "So, what are you waiting for? Plan your next trip to Indonesia as soon as possible & we guarantee that you won't regret it! Also, feel free to give us feedback by reaching us from our LinkedIn. See you in Indonesia! 
+                                 "So, what are you waiting for? Plan your next trip to Indonesia as soon as possible & we guarantee that you won't regret it! Also, feel free to give us feedback by reaching us from our LinkedIn. See you in the Beautiful Indonesia! 
                                  ")),
                           br(),
                           br(),
