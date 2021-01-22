@@ -16,6 +16,7 @@ We will explain more about the application below, but if you want to see it dire
 <a name="Intro"></a>
 ## Introduction
 explain about our goals, how to collect data, and what makes it different
+"*Indonesia*".. What is the first word pops out in your head when you read the word "Indonesia"? Maybe most of you will come up with the word "Bali". With this application, we hope that after this the first word popps out in your head when you read or hear about Indonesia is *Beautiful*. We want to introduce the beauty of Indonesia to the people all around the world, especially those who want to experience new holiday trip, by making this app. All informations that we provide in this app are scraped from the sources we attached in the About Us section. 
 
 <a name="Place"></a>
 ## Popular Places
@@ -40,4 +41,6 @@ In the word cloud, the size of the words implies how many times they were writte
   
 <a name="Booking"></a>
 ## Booking Applications
-explain about why we provide this, and there is hyperlink
+It is not completed if we only give you the recommended places, so we also provide you with 6 applications where you can book flight and hotel, or book your admission ticket to the destinations. 
+In the Booking Applications menu, we also provide you with the description of each apps and the rating from Google Play Store, so it is up to you to choose which one you want to use. Moreover, we also provide you with a hyperlink to the Google Play Store in the application name.
+That's all about our booking applications and hope you enjoy BeautIndonesia!
