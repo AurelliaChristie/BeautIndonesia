@@ -94,7 +94,7 @@ addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T,textOnly =TRUE, te
 # Yogyakarta
 
 ```{r}
-Yogyakarta <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Yogya_destination.csv")
+Yogyakarta <- read.csv("Data/Yogya_destination.csv")
 Yogyakarta <- tibble(Yogyakarta)
 Yogyakarta <- Yogyakarta[c(1:5,7),]
 ```
@@ -149,7 +149,7 @@ addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T))
 # Makassar
 
 ```{r}
-Makassar <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Makassar_destination.csv")
+Makassar <- read.csv("Data/Makassar_destination.csv")
 Makassar <- tibble(Makassar)
 Makassar <- Makassar[c(1:5,7),]
 ```
@@ -204,7 +204,7 @@ addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T))
 # Makassar
 
 ```{r}
-Malang <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Malang_destination.csv")
+Malang <- read.csv("Data/Malang_destination.csv")
 Malang <- tibble(Malang)
 Malang <- Malang[c(1:5,7),]
 ```
@@ -259,7 +259,7 @@ addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T))
 # Bandung
 
 ```{r}
-Bandung <- read.csv("D:/Documents/Supertype/Unit Project or portfolio/Travel Planner/Travel-Planner/Data/Bandung_destination.csv")
+Bandung <- read.csv("Data/Bandung_destination.csv")
 Bandung <- tibble(Bandung)
 Bandung <- Bandung[c(1:5,7),]
 ```
