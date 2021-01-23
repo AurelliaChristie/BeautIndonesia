@@ -69,7 +69,7 @@ server <- function(input, output) {
       mutate(id_order = order(as.integer(Path()))
       )%>%
       arrange(id_order)})
-  
+
   ### Plot a map with the data and overlay the optimal path
   City_map <- reactive({
     City_prep() %>% 
@@ -85,7 +85,7 @@ server <- function(input, output) {
         label= ~as.character(Name)
       )%>%
       addPolylines(lng = ~Long, lat = ~Lat, options = list(need_decorator = TRUE)) %>%
-      addMarkers(~Long, ~Lat,labelOptions = labelOptions(noHide = T,textOnly =TRUE, textsize = '30px',style = "A",direction = TRUE),label = City_prep()$id_order)
+      addMarkers(~Long, ~Lat, labelOptions = labelOptions(noHide = T,textOnly =TRUE, textsize = '30px',style = "A",direction = TRUE))
   })
   
   output$Route_map <- renderLeaflet(City_map())
