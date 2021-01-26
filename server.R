@@ -24,7 +24,7 @@ server <- function(input, output) {
       fillOpacity=0.8,
       radius=7,
       stroke=TRUE) %>% 
-    fitBounds(96.94158, 4.284619, 130.76741, -4.59741) %>% 
+    fitBounds(96.94158, 4.284619, 126.76741, -4.59741) %>% 
     addLegend(
       "bottomleft",
       colors = c("#FFF5F0","#FEE0D2","#FC9272","#FB6A4A","#CB181D","#A50F15","black"),
@@ -40,9 +40,9 @@ server <- function(input, output) {
   ## Route Optimization
   
   ### Read Input Data
-  City_read <- reactive({get(input$Destination)}) #to call dataframe use 'get()' function
+  City_read <- eventReactive(input$Submit,{get(input$Destination)}) #to call dataframe use 'get()' function
   
-  Stars <- reactive({as.numeric(input$Star)+4})
+  Stars <- eventReactive(input$Submit,{as.numeric(input$Star)+4})
   
   Stars_max7 <- reactive({ifelse(Stars() <= 7, 7,Stars())})
   
@@ -69,7 +69,7 @@ server <- function(input, output) {
       mutate(id_order = order(as.integer(Path()))
       )%>%
       arrange(id_order)})
-
+  
   ### Plot a map with the data and overlay the optimal path
   City_map <- reactive({
     City_prep() %>% 
@@ -84,23 +84,32 @@ server <- function(input, output) {
         stroke = FALSE,
         label= ~as.character(Name)
       )%>%
-      addPolylines(lng = ~Long, lat = ~Lat, options = list(need_decorator = TRUE)) %>%
-      addMarkers(~Long, ~Lat, labelOptions = labelOptions(noHide = T,textOnly =TRUE, textsize = '30px',style = "A",direction = TRUE))
+      addPolylines(lng = ~Long, lat = ~Lat, options = list(need_decorator = TRUE))
   })
   
-  output$Route_map <- renderLeaflet({City_map()})
+  output$Route_map <- renderLeaflet(City_map())
   
   ## Destination Descriptions
   
+  ### Title
+  desc_title <- eventReactive(input$Submit, {
+    div(style="text-align: center;font-size: 30px;font-family: Helvetica;",
+        hr(),"About The Destinations")
+  })
+  output$Desc_title <- renderUI({desc_title()})
+  
   ### Destination Place selectInput
-  choices <- reactive({City_read()[c(1:5,Stars_max7()),1]})
-  selected <- reactive({City_read()[Stars_max7(),1]})
+  choices <- eventReactive(input$Submit, {City_read()[c(1:5,Stars_max7()),1]})
+  selected <- eventReactive(input$Submit, {City_read()[Stars_max7(),1]})
   output$Place <- renderUI({
     selectInput("Dest_Place", "Destination Place", choices = choices(), selected = selected())
   })
   
+  Button <- eventReactive(input$Submit,{actionButton("Ok","Ok")}) 
+  output$Ok <- renderUI(Button())
+  
   ### Destination Place Image
-  path <- reactive({
+  path <- eventReactive(input$Ok,{
     paste0("www/Place_Image/",gsub("_dest","",input$Destination), "/",input$Dest_Place,".jpg")
   })
   
@@ -109,71 +118,77 @@ server <- function(input, output) {
   }) 
   
   ### Destination Place Description
-  desc <- reactive({
+  desc <- eventReactive(input$Ok,{
     City_read()[City_read()$Name == input$Dest_Place, "Description"]
   })
   output$place_desc <- renderText({desc()})
   
   ### Tips
-  tips_tit <- reactive({
+  tips_tit <- eventReactive(input$Ok, {
     div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", paste0(gsub("_dest","",input$Destination)," Travel Tips"),br())
   })
   output$tips_title <- renderUI({tips_tit()})
   
-  tips_con <- reactive({
+  tips_con <- eventReactive(input$Ok, {
     travel_tips %>% select(input$Destination)
   })
-  tips_cont <- reactive({
+  tips_cont <- reactive(
     kable(tips_con(), format="html", align = "c") %>%
       kable_styling(bootstrap_options = c("hover"))
-  })
-  output$tips_content <- reactive({gsub("<thead>.*</thead>", "", tips_cont())})
+  )
+  output$tips_content <- reactive(gsub("<thead>.*</thead>", "", tips_cont()))
   
   ## Reviews
   
+  ### What They Said About The Destinations
+  rev_tit <- eventReactive(input$Ok, {
+    div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", "What They Said About The Destination")
+  })
+  output$rev_title <- renderUI({rev_tit()})
+  
   #### Input Data
-  rev_read <- reactive({
+  rev_read <- eventReactive(input$Ok,{
     {get(gsub("_dest","_rev",input$Destination))}
   })
-  pl <- reactive({word(input$Dest_Place,1)})
-  dpl <- reactive({rev_read() %>% select(pl()) %>% as.character()})
+  pl <- eventReactive(input$Ok, {word(input$Dest_Place,1)})
+  dpl <- reactive(rev_read() %>% select(pl()) %>% as.character())
   
   #### Data Preparation for Word Cloud
   
   #### Convert review to corpus vector
-  corp <- reactive({VCorpus(VectorSource(dpl()))})
+  corp <- reactive(VCorpus(VectorSource(dpl())))
   
   #### Convert all text to lower case
-  corp_low <- reactive({tm_map(corp(), content_transformer(tolower))})
+  corp_low <- reactive(tm_map(corp(), content_transformer(tolower)))
   
   #### Transform punctuations to empty space
-  corp1 <- reactive({tm_map(corp_low(), trans, "@")})
-  corp2 <- reactive({tm_map(corp1(), trans, "/")})
-  corp3 <- reactive({tm_map(corp2(), trans, "\\|")})
-  corp4 <- reactive({tm_map(corp3(), trans, "-")})
+  corp1 <- reactive(tm_map(corp_low(), trans, "@"))
+  corp2 <- reactive(tm_map(corp1(), trans, "/"))
+  corp3 <- reactive(tm_map(corp2(), trans, "\\|"))
+  corp4 <- reactive(tm_map(corp3(), trans, "-"))
   
   #### Remove other punctuations
-  corp5 <- reactive({tm_map(corp4(), removePunctuation)})
+  corp5 <- reactive(tm_map(corp4(), removePunctuation))
   
   #### Remove numbers
-  corp6 <- reactive({tm_map(corp5(), removeNumbers)})
+  corp6 <- reactive(tm_map(corp5(), removeNumbers))
   
   #### Remove stopwords
-  corp7 <- reactive({tm_map(corp6(), removeWords, stopwords("english"))})
+  corp7 <- reactive(tm_map(corp6(), removeWords, stopwords("english")))
   
-  #### Apply lemmatization 
-  corp8 <- reactive({tm_map(corp7(), lemmatize_words)})
+  #### Apply stemming (eg. "doing" -> "do")
+  corp8 <- reactive(tm_map(corp7(), lemmatize_words))
   
   #### Remove extra white space
-  corp_fin <- reactive({tm_map(corp8(), stripWhitespace)})
+  corp_fin <- reactive(tm_map(corp8(), stripWhitespace))
   
   #### Document Term Matrix
-  dtm <- reactive({TermDocumentMatrix(corp_fin())})
-  mat <- reactive({as.matrix(dtm())})
+  dtm <- reactive(TermDocumentMatrix(corp_fin()))
+  mat <- reactive(as.matrix(dtm()))
   
   #### Change matrix to data frame (sort from the largest to lowest frequency)
-  mat2 <- reactive({sort(rowSums(mat()), decreasing = TRUE)})
-  df <- reactive({data.frame(Word = names(mat2()), Frequency = mat2())})
+  mat2 <- reactive(sort(rowSums(mat()), decreasing = TRUE))
+  df <- reactive(data.frame(Word = names(mat2()), Frequency = mat2()))
   
   output$rev_words <- renderWordcloud2({
     set.seed(100)
@@ -181,26 +196,30 @@ server <- function(input, output) {
   })
   
   ### How They Felt About The Destination
+  sent_tit <- eventReactive(input$Ok, {
+    div(style="text-align:center; font-size:16px; font-weight:bold; font-family:Helvetica;", "How They Felt About The Destination")
+  })
+  output$sent_title <- renderUI({sent_tit()})
   
   #### Fetch Sentiment Words
-  sent <- reactive({get_nrc_sentiment(dpl())})
-  comb <- reactive({cbind(dpl(), sent())})
+  sent <- reactive(get_nrc_sentiment(dpl()))
+  comb <- reactive(cbind(dpl(), sent()))
   
   #### Total Sentiment Score per Category
-  total_sen <- reactive({data.frame(colSums(comb()[, c(2:11)]))})
-  total_sent <- reactive({cbind("Sentiment" = rownames(total_sen()), total_sen())})
+  total_sen <- reactive(data.frame(colSums(comb()[, c(2:11)])))
+  total_sent <- reactive(cbind("Sentiment" = rownames(total_sen()), total_sen()))
   rownames(total_sent) <- NULL
   
   #### Sentiment Plot
   sent_plot <- reactive(
-    {ggplot(total_sent(), aes(x=colSums.comb.....c.2.11..., y= reorder(Sentiment,colSums.comb.....c.2.11...))) +
+    ggplot(total_sent(), aes(x=colSums.comb.....c.2.11..., y= reorder(Sentiment,colSums.comb.....c.2.11...))) +
       geom_bar(stat="identity") +
       theme_classic()+
       theme(legend.position="none") +
       xlab("Total Count")+
-      ylab("")}
+      ylab("")
   )
-  output$sent_cont <- renderPlot({sent_plot()})
+  output$sent_cont <- renderPlot(sent_plot())
   
   # Booking Application
   
@@ -210,7 +229,7 @@ server <- function(input, output) {
                                         alt = "Face")
   })
   
-  output$Traveloka_desc <- renderText({Booking_Apps[1,5]})
+  output$Traveloka_desc <- renderText(Booking_Apps[1,5])
   
   output$Traveloka_stars <- renderUI({
     n_fill <- (4.8/ 5) * 100
@@ -225,7 +244,7 @@ server <- function(input, output) {
                                           alt = "Face")
   })
   
-  output$Tripadvisor_desc <- renderText({Booking_Apps[2,5]})
+  output$Tripadvisor_desc <- renderText(Booking_Apps[2,5])
   
   output$Tripadvisor_stars <- renderUI({
     n_fill <- (4.4/ 5) * 100
@@ -240,7 +259,7 @@ server <- function(input, output) {
                                     alt = "Face")
   })
   
-  output$Tiket_desc <- renderText({Booking_Apps[3,5]})
+  output$Tiket_desc <- renderText(Booking_Apps[3,5])
   
   output$Tiket_stars <- renderUI({
     n_fill <- (4.6/ 5) * 100
@@ -255,7 +274,7 @@ server <- function(input, output) {
                                        alt = "Face")
   })
   
-  output$Pegipegi_desc <- renderText({Booking_Apps[4,5]})
+  output$Pegipegi_desc <- renderText(Booking_Apps[4,5])
   
   output$Pegipegi_stars <- renderUI({
     n_fill <- (4.6/ 5) * 100
@@ -270,7 +289,7 @@ server <- function(input, output) {
                                     alt = "Face")
   })
   
-  output$Agoda_desc <- renderText({Booking_Apps[5,5]})
+  output$Agoda_desc <- renderText(Booking_Apps[5,5])
   
   output$Agoda_stars <- renderUI({
     n_fill <- (4.5/ 5) * 100
@@ -285,7 +304,7 @@ server <- function(input, output) {
                                       alt = "Face")
   })
   
-  output$Booking_desc <- renderText({Booking_Apps[6,5]})
+  output$Booking_desc <- renderText(Booking_Apps[6,5])
   
   output$Booking_stars <- renderUI({
     n_fill <- (4.7/ 5) * 100
