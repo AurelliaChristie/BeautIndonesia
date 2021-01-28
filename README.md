@@ -7,9 +7,9 @@ We will explain more about the application below, but if you want to see it dire
 ## Table of Contents 
 [1. Introduction](#Intro)
 
-[2. Place Recommendation](#Place)
+[2. Popular Places](#Place)
 
-[3. Travel Recommendation](#Travel)
+[3. Trip Recommendations](#Travel)
 
 [4. Booking Applications](#Booking)
 
