@@ -220,12 +220,12 @@ ui <- navbarPage("BeautIndonesia", position = "static-top", collapsible = TRUE,
                                  These places are the favourite tourist places among Indonesian and we will try to make them global sensations!",
                                               br(),br(),
                                               "If you are having a little doubt to travel to Indonesia because you do not know about the place, the culture, and the clickbait of the media,
-                                 don't worry! Those are the reasons why this application is made.", br(),br(),
+                                 do not worry! Those are the reasons why this application is made.", br(),br(),
                                               "You can find 25 amazing tourist places and 15 great hotels that are located in the 5 most popular places in Indonesia, that will give you an amazing travel experience.
                                  Moreover, we also provide the route optimization, so you will effectively spend your time enjoying the places, not stuck in the car for a long time.
                                  There are also some reviews from other tourists that will give you a big picture what to expect from those places.
                                  Last, there are also 6 top travel booking applications that you can use to book your hotel and/or tickets to the travel destinations.", br(),br(),
-                                              "So, what are you waiting for? Plan your next trip to Indonesia as soon as possible & we guarantee that you won't regret it! Also, feel free to give us feedback by reaching us from our LinkedIn. See you in the Beautiful Indonesia! 
+                                              "So, what are you waiting for? Plan your next trip to Indonesia as soon as possible & we guarantee that you will not regret it! Also, feel free to give us feedback by reaching us from our LinkedIn. See you in the Beautiful Indonesia! 
                                  ")),
                                    br(),
                                    br(),
@@ -246,9 +246,9 @@ ui <- navbarPage("BeautIndonesia", position = "static-top", collapsible = TRUE,
                                              tags$a(href="https://www.linkedin.com/in/aurellia-christie-059892179/",icon("linkedin"),style='padding:4px; font-size:25px'),
                                              tags$a(href="https://github.com/AurelliaChristie", icon("github"),style='padding:4px; font-size:25px')
                                          ),
-                                         div(style="text-align:center;","Hi! I'm Aurellia Christie, a college student majoring in Business Mathematics that have a passion in data science. 
-                                                                          Travelling is my hobby to relieve stress and gateaway from my tight schedule. By making this application, I hope I'm succeed in making you guys love my hobby too!
-                                                                          Let's connect through LinkedIn so we can talk more about data science, mathematics, and obviously TRAVELLING!"
+                                         div(style="text-align:center;","Hi! I am Aurellia Christie, a college student majoring in Business Mathematics that have a passion in data science. 
+                                                                          Travelling is my hobby to relieve stress and gateaway from my tight schedule. By making this application, I hope I am succeed in making you guys love my hobby too!
+                                                                          Let us connect through LinkedIn so we can talk more about data science, mathematics, and obviously TRAVELLING!"
                                          )
                                      ))),
                           
@@ -262,10 +262,10 @@ ui <- navbarPage("BeautIndonesia", position = "static-top", collapsible = TRUE,
                                              tags$a(href="https://www.linkedin.com/in/geraldbryan/",icon("linkedin"),style='padding:4px; font-size:25px'),
                                              tags$a(href="https://github.com/geraldbryan", icon("github"),style='padding:4px; font-size:25px')
                                          ),
-                                         div(style="text-align:center;","Hi! I'm Gerald Bryan, like Aurellia, I'm also a college student majoring in Business Mathematics.
+                                         div(style="text-align:center;","Hi! I am Gerald Bryan, like Aurellia, I am also a college student majoring in Business Mathematics.
                                             I have interests in data science and data analytics, especially in data story telling. 
-                                            I'm also a TRAVEL ENTHUSIAST! If you have similiar interests with me, feel free to connect with me through LinkedIn so we can talk about them!
-                                            If you don't, let's still connect so we can share about other things!")
+                                            I am also a TRAVEL ENTHUSIAST! If you have similiar interests with me, feel free to connect with me through LinkedIn so we can talk about them!
+                                            If you do not, let us still connect so we can share about other things!")
                                      )))
                  )
 )

@@ -115,7 +115,7 @@ server <- function(input, output) {
   
   output$place_image <- renderImage({list(src = path(),
                                           contentType = "image/jpg",width=250, height=150,alt=" ")
-  }) 
+  }, deleteFile = FALSE) 
   
   ### Destination Place Description
   desc <- eventReactive(input$Ok,{
@@ -230,7 +230,7 @@ server <- function(input, output) {
   output$Traveloka <- renderImage({list(src = "www/Logo/Traveloka.jpg",
                                         contentType = "image/jpg",width=150, height=150,
                                         alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Traveloka_desc <- renderText({Booking_Apps[1,5]})
   
@@ -245,7 +245,7 @@ server <- function(input, output) {
   output$Tripadvisor <- renderImage({list(src = "www/Logo/Tripadvisor.jpg",
                                           contentType = "image/jpg",width=150, height=150,
                                           alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Tripadvisor_desc <- renderText({Booking_Apps[2,5]})
   
@@ -260,7 +260,7 @@ server <- function(input, output) {
   output$Tiket <- renderImage({list(src = "www/Logo/tiketcom.jpg",
                                     contentType = "image/jpg",width=150, height=150,
                                     alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Tiket_desc <- renderText({Booking_Apps[3,5]})
   
@@ -275,7 +275,7 @@ server <- function(input, output) {
   output$Pegipegi <- renderImage({list(src = "www/Logo/Pegipegi.jpg",
                                        contentType = "image/jpg",width=150, height=150,
                                        alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Pegipegi_desc <- renderText({Booking_Apps[4,5]})
   
@@ -290,7 +290,7 @@ server <- function(input, output) {
   output$Agoda <- renderImage({list(src = "www/Logo/Agoda.jpg",
                                     contentType = "image/jpg",width=150, height=150,
                                     alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Agoda_desc <- renderText({Booking_Apps[5,5]})
   
@@ -305,7 +305,7 @@ server <- function(input, output) {
   output$Booking <- renderImage({list(src = "www/Logo/Bookingcom.jpg",
                                       contentType = "image/png",width=150, height=150,
                                       alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Booking_desc <- renderText({Booking_Apps[6,5]})
   
@@ -323,17 +323,17 @@ server <- function(input, output) {
   output$Indonesia <- renderImage({list(src = "www/About_us/Indonesia.png",
                                         contentType = "image/png",width=600, height=275,
                                         alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Aurel <- renderImage({list(src = "www/About_us/Aurel.jpg",
                                     contentType = "image/png",width=180, height=200,
                                     alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   output$Gerald <- renderImage({list(src = "www/About_us/Gerald.jpg",
                                      contentType = "image/png",width=180, height=200,
                                      alt = "Face")
-  })
+  },deleteFile = FALSE)
   
   ## Source 
   observeEvent(input$openModal, {
