@@ -2,7 +2,7 @@
 
 **BeautIndonesia** is an application designed for local or foreign tourist who wants to plan their holiday trip to Indonesia without any background knowledge of Indonesia tourism. In this application, we provide you some informations about destinations, destination's reviews, rules or norms, and booking applications to book your flight, hotel, and ticket in Indonesia. Those things will help you to plan your trip to Indonesia and enjoy the **Beautiful Indonesia**!
 
-We will explain more about the application below, but if you want to see it directly, just check it out: (shiny app link)
+We will explain more about the application below, but if you want to see it directly, just check it out: http://bit.ly/BeautIndonesia
 
 ## Table of Contents 
 [1. Introduction](#Intro)
