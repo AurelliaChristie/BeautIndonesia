@@ -15,16 +15,16 @@ server <- function(input, output) {
       radius= 7,
       stroke = TRUE)
   
-  Map <- Nonbali_Map %>% 
+  Map <- Nonbali_Map %>%
     addCircleMarkers(
-      ~Bali_Search$Long,
-      ~Bali_Search$Lat,
+      ~Bali_Search[1,3],
+      ~Bali_Search[1,4],
       label = Bali_Lab,
       fillColor = "black",
       fillOpacity=0.8,
       radius=7,
-      stroke=TRUE) %>% 
-    fitBounds(96.94158, 4.284619, 130.76741, -4.59741) %>% 
+      stroke=TRUE) %>%
+    fitBounds(96.94158, 4.284619, 130.76741, -4.59741) %>%
     addLegend(
       "bottomleft",
       colors = c("#FFF5F0","#FEE0D2","#FC9272","#FB6A4A","#CB181D","#A50F15","black"),
@@ -32,8 +32,8 @@ server <- function(input, output) {
       opacity = 1,
       title = "Interest Over Time"
     )
-  
-  output$Search_Ratings <- renderLeaflet({Map})
+
+   output$Search_Ratings <- renderLeaflet({Map})
   
   # Travel Recommendation
   
